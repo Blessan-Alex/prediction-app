@@ -33,9 +33,9 @@ export function HeroTop() {
     return (
         <section
             ref={ref}
-            className="relative pt-32 pb-16 md:pt-40 md:pb-24 z-10"
+            className="relative min-h-[95vh] flex flex-col justify-center items-center pt-20 pb-16 z-10 snap-start snap-always"
         >
-            <Container className="flex flex-col items-center text-center">
+            <Container className="flex flex-col items-center text-center flex-1 justify-center">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -87,6 +87,31 @@ export function HeroTop() {
                     </motion.div>
                 </motion.div>
             </Container>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-4 left-0 right-0 mx-auto w-full flex flex-col items-center gap-3 cursor-pointer z-20"
+                onClick={() => {
+                    const next = document.getElementById("widget-section");
+                    next?.scrollIntoView({ behavior: "smooth" });
+                }}
+            >
+                <motion.span
+                    className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-medium"
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                    Scroll to experience
+                </motion.span>
+                <motion.div
+                    className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-cyan-400/50 to-white/0"
+                    animate={{ scaleY: [0.8, 1.2, 0.8], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+            </motion.div>
         </section>
     );
 }
