@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/cn";
@@ -32,6 +33,19 @@ export default function RootLayout({
           "font-sans min-h-screen relative overflow-x-hidden bg-background text-foreground"
         )}
       >
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LKBEPGNV6V"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-LKBEPGNV6V');
+          `}
+        </Script>
         {children}
       </body>
     </html>
