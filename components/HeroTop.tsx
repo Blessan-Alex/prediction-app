@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
-import { Twitter } from "lucide-react";
+import { Twitter, ChevronDown } from "lucide-react";
 
 export function HeroTop() {
   const ref = useRef<HTMLElement>(null);
@@ -112,24 +112,40 @@ export function HeroTop() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-4 left-0 right-0 mx-auto w-full flex flex-col items-center gap-3 cursor-pointer z-20"
+        className="absolute bottom-4 left-0 right-0 mx-auto w-full flex flex-col items-center gap-1 cursor-pointer z-20"
         onClick={() => {
           const next = document.getElementById("widget-section");
           next?.scrollIntoView({ behavior: "smooth" });
         }}
       >
         <motion.span
-          className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-medium"
+          className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-medium mb-2"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           Scroll to experience
         </motion.span>
-        <motion.div
-          className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-cyan-400/50 to-white/0"
-          animate={{ scaleY: [0.8, 1.2, 0.8], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
+
+        {/* Animated Arrows */}
+        <div className="flex flex-col items-center -space-y-4">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              animate={{
+                y: [0, 5, 0],
+                opacity: [0.2, 1, 0.2]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.2
+              }}
+            >
+              <ChevronDown className="w-6 h-6 text-cyan-400/80" />
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

@@ -1,12 +1,33 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 import { Container } from "@/components/layout/Container";
 import { Pill } from "@/components/ui/Pill";
+import { cn } from "@/lib/cn";
 
 export function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 py-6 md:py-8">
+        <header
+            className={cn(
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                scrolled
+                    ? "bg-[#0a0f1c]/80 backdrop-blur-md border-b border-white/5 py-4"
+                    : "bg-transparent py-6 md:py-8"
+            )}
+        >
             <Container className="flex items-center justify-between">
                 {/* Left: Brand Group */}
                 <div className="flex items-center gap-3 md:gap-4">

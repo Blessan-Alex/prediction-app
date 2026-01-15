@@ -35,10 +35,9 @@ export function VoteBlock() {
 
                 {/* Header Section */}
                 <div className="relative z-10 mb-8 flex flex-col items-center md:items-start text-center md:text-left">
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1 tracking-tight drop-shadow-sm">
-                        Cast a $1 vote
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight drop-shadow-sm">
+                        Support this launch
                     </h3>
-                    <p className="text-sm text-white/50 mb-4">Support this launch.</p>
 
                     {/* C) Fairness Trust Badge */}
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/30 border border-cyan-500/20 shadow-[0_0_10px_-4px_rgba(34,211,238,0.3)]">
