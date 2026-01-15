@@ -4,12 +4,30 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/cn";
 
+import { ToastContainer } from "react-toastify";
+
 const geistSans = localFont({
   src: [
-    { path: "../public/fonts/geist-sans-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../public/fonts/geist-sans-latin-500-normal.woff2", weight: "500", style: "normal" },
-    { path: "../public/fonts/geist-sans-latin-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "../public/fonts/geist-sans-latin-700-normal.woff2", weight: "700", style: "normal" },
+    {
+      path: "../public/fonts/geist-sans-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/geist-sans-latin-500-normal.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/geist-sans-latin-600-normal.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/geist-sans-latin-700-normal.woff2",
+      weight: "700",
+      style: "normal",
+    },
   ],
   variable: "--font-geist-sans",
   display: "swap",
@@ -47,6 +65,7 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <ToastContainer theme="dark" />
       </body>
     </html>
   );
