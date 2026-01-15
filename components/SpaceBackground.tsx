@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function SpaceBackground({ className }: { className?: string }) {
     return (
-        <div className={cn("fixed inset-0 z-[-1] overflow-hidden bg-background select-none pointer-events-none", className)}>
+        <div className={cn("fixed top-0 left-0 w-full h-[100lvh] z-[-1] overflow-hidden bg-background select-none pointer-events-none", className)}>
             {/* 1. Base Background Image */}
             <div className="absolute inset-0">
                 <Image
@@ -11,6 +11,7 @@ export function SpaceBackground({ className }: { className?: string }) {
                     alt=""
                     fill
                     priority
+                    quality={95}
                     className="object-cover opacity-60 mix-blend-screen"
                     sizes="100vw"
                 />
@@ -29,7 +30,7 @@ export function SpaceBackground({ className }: { className?: string }) {
             />
 
             {/* 4. CSS Grain Overlay */}
-            <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
+            <div className="absolute inset-0 opacity-[0.01] pointer-events-none mix-blend-overlay">
                 <svg className="w-full h-full">
                     <filter id="noise">
                         <feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch" />
