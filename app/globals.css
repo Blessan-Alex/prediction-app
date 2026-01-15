@@ -1,26 +1,50 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors - converted to HSL for Tailwind opacity support */
+  /* bg: #05070B -> 220 38% 3% */
+  --background: 220 38% 3%;
+  
+  /* surface-1: #0B0F16 -> 218 33% 6.5% */
+  --surface-1: 218 33% 6%;
+  
+  /* surface-2: #0F1624 -> 220 41% 10% */
+  --surface-2: 220 41% 10%;
+  
+  /* text: #EAF0FF -> 222 100% 96% */
+  --foreground: 222 100% 96%;
+  
+  /* muted: rgba(234,240,255,0.6) -> 222 100% 96% / 0.6 */
+  /* We use the base HSL and let opacity handle it in utility or hardcode it */
+  --muted: 222 100% 96%; /* Apply opacity via text-muted/60 */
+  
+  /* border subtle: rgba(255,255,255,0.10) */
+  --border: 0 0% 100%; /* Apply opacity via border-border/10 */
+
+  /* glow cyan: #25F4C8 -> 167 92% 55% */
+  --glow-cyan: 167 92% 55%;
+  
+  /* glow blue: #3B82F6 -> 217 91% 60% */
+  --glow-blue: 217 91% 60%;
+
+  /* Radii */
+  --radius-frame: 32px;
+  --radius-card: 16px;
+
+  /* Font */
+  --font-geist-sans: "Geist Sans", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-glow-cyan/20 selection:text-glow-cyan;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Utilities */
+.glass-panel {
+  @apply backdrop-blur-xl bg-surface-1/40 border border-white/5 shadow-2xl;
 }
