@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { VoteBlock } from "@/components/VoteBlock";
 import { toast } from "react-toastify";
+import { RegistrationToast } from "@/components/toasts/RegistrationToast";
 
 export function ConversionCTA() {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ export function ConversionCTA() {
         throw new Error(data.error || "Failed to register");
       }
 
-      toast.success("Registered Successfully!");
+      toast(<RegistrationToast />, { containerId: "top-right" }); // Custom component toast linked to top-right container
       setStatus("success");
       setEmail("");
       setNotifyMe(false);
@@ -114,9 +115,8 @@ export function ConversionCTA() {
                   )}
                 </div>
                 <label
-                  className={`flex items-center gap-2 cursor-pointer group ${
-                    status !== "idle" && " mt-3"
-                  }`}
+                  className={`flex items-center gap-2 cursor-pointer group ${status !== "idle" && " mt-3"
+                    }`}
                 >
                   <div className="relative">
                     <input

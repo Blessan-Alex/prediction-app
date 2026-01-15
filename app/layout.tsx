@@ -6,6 +6,8 @@ import { cn } from "@/lib/cn";
 
 import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const geistSans = localFont({
   src: [
     {
@@ -65,7 +67,21 @@ export default function RootLayout({
           `}
         </Script>
         {children}
-        <ToastContainer theme="dark" />
+        <ToastContainer
+          position="bottom-right"
+          theme="dark"
+          toastClassName="!bg-[#0a0f1c]/90 !backdrop-blur-xl !border !border-white/10 !shadow-2xl !rounded-xl !text-white"
+          bodyClassName="!font-sans !text-sm !font-medium"
+          progressClassName="!bg-gradient-to-r !from-cyan-400 !to-blue-500"
+        />
+        <ToastContainer
+          containerId="top-right"
+          position="top-right"
+          theme="dark"
+          toastClassName="!bg-[#0a0f1c]/90 !backdrop-blur-xl !border !border-white/10 !shadow-2xl !rounded-xl !text-white !mt-4 !mr-4"
+          bodyClassName="!font-sans !text-sm !font-medium"
+          progressClassName="!bg-gradient-to-r !from-cyan-400 !to-blue-500"
+        />
       </body>
     </html>
   );
