@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { StepsRail, Step } from "./StepsRail";
 import { ChallengePrototypeCard } from "./ChallengePrototypeCard";
 import { ArrowRight } from "lucide-react";
@@ -37,6 +37,28 @@ const INITIAL_STATE: ChallengeState = {
 
 export function ChallengeShowcase() {
     const [state, setState] = useState<ChallengeState>(INITIAL_STATE);
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+        },
+    };
 
     const updateState = useCallback((updates: Partial<ChallengeState>) => {
         setState((prev) => ({ ...prev, ...updates }));
@@ -76,10 +98,19 @@ export function ChallengeShowcase() {
     };
 
     return (
-        <div className="w-full flex flex-col items-center gap-12">
+        <motion.div
+            ref={ref}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="w-full flex flex-col items-center gap-12"
+        >
 
             {/* Main Showcase Container */}
-            <div className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 bg-[#0c101b] shadow-2xl shadow-cyan-900/20 relative group">
+            <motion.div
+                variants={itemVariants}
+                className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 bg-[#0c101b] shadow-2xl shadow-cyan-900/20 relative group"
+            >
                 {/* Subtle Star Density Overlay (Scoped) */}
                 <div
                     className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
@@ -127,16 +158,17 @@ export function ChallengeShowcase() {
                         />
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Conversion Button */}
-            <button
+            <motion.button
+                variants={itemVariants}
                 onClick={handleScrollToCTA}
                 className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-sm font-medium text-white/70 hover:text-white"
             >
                 Get early access
                 <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
-            </button>
-        </div>
+            </motion.button>
+        </motion.div>
     );
 }
