@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Check, Clock, User, Users, Sparkles, UserCheck, ArrowRight, Lock, ShieldCheck, Coins, Trophy } from "lucide-react";
+import { Check, Clock, Users, Sparkles, UserCheck, ArrowRight, Lock, ShieldCheck, Coins, Trophy } from "lucide-react";
 import { GlowBorder } from "@/components/ui/GlowBorder";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -64,11 +64,6 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
         }
         if (!selectedSide) return; // UI should disable button
         updateState({ step: 2 });
-    };
-
-    const selectFriend = (handle: string) => {
-        if (isAnimating) return;
-        updateState({ opponentHandle: handle, step: 3 });
     };
 
     const [isLocking, setIsLocking] = useState(false);

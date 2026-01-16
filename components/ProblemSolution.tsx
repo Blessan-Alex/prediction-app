@@ -6,9 +6,8 @@ import { Container } from "@/components/layout/Container";
 export default function ProblemSolution() {
     return (
         <section
-            className="relative w-full overflow-hidden"
+            className="relative w-full overflow-hidden pt-10 pb-24 md:pt-32 md:pb-32"
             aria-labelledby="problem-heading"
-            style={{ paddingBottom: '100px', paddingTop: '120px' }}
         >
 
 
@@ -76,6 +75,6 @@ export default function ProblemSolution() {
                 {/* Horizon Line Glow */}
                 <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
             </motion.div>
-        </section>
+        </section >
     );
 }

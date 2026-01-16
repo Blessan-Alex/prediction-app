@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
-import { ChevronDown } from "lucide-react";
+
 
 export function HeroTop() {
   const ref = useRef<HTMLElement>(null);
@@ -72,7 +72,7 @@ export function HeroTop() {
           {/* CTA Row */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col items-center space-y-6 w-full"
+            className="flex flex-col items-center space-y-6 w-full mt-16"
           >
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
               <Button
