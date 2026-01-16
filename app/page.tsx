@@ -18,7 +18,7 @@ export default function Home() {
         <HeroTop />
 
         {/* Central Widget Explainer */}
-        <section id="widget-section" className="relative w-full py-20 px-4 min-h-screen flex flex-col justify-center snap-start snap-always">
+        <section id="widget-section" className="relative w-full pb-20 px-4 min-h-screen flex flex-col justify-center snap-start snap-always -mt-24 md:-mt-32 z-20">
           <Container className="flex flex-col items-center">
             <ChallengeShowcase />
 

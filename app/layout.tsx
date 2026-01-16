@@ -70,6 +70,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://settleupnow.vercel.app",
   },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 const jsonLd = {
@@ -92,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={cn(
           geistSans.variable,

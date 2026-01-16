@@ -45,7 +45,7 @@ export function HeroTop() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-4xl w-full flex flex-col items-center space-y-8 md:space-y-10"
+          className="max-w-4xl w-full flex flex-col items-center space-y-6 md:space-y-8"
         >
           {/* Headline */}
           <div className="space-y-2 md:space-y-4">
@@ -72,7 +72,7 @@ export function HeroTop() {
           {/* CTA Row */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col items-center space-y-6 pt-4 w-full"
+            className="flex flex-col items-center space-y-6 w-full"
           >
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
               <Button
@@ -84,53 +84,13 @@ export function HeroTop() {
               </Button>
             </div>
 
-            <span className="text-xs text-white/30 font-medium">
-              Rules lock when your friend joins.
-            </span>
+
           </motion.div>
         </motion.div>
       </Container>
 
       {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-4 left-0 right-0 mx-auto w-full flex flex-col items-center gap-1 cursor-pointer z-20"
-        onClick={() => {
-          const next = document.getElementById("widget-section");
-          next?.scrollIntoView({ behavior: "smooth" });
-        }}
-      >
-        <motion.span
-          className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-medium mb-2"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          Scroll to experience
-        </motion.span>
 
-        {/* Animated Arrows */}
-        <div className="flex flex-col items-center -space-y-4">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              animate={{
-                y: [0, 5, 0],
-                opacity: [0.2, 1, 0.2]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.2
-              }}
-            >
-              <ChevronDown className="w-6 h-6 text-cyan-400/80" />
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }
