@@ -36,7 +36,7 @@ export function VoteBlock() {
                 {/* Header Section */}
                 <div className="relative z-10 mb-8 flex flex-col items-center md:items-start text-center md:text-left">
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight drop-shadow-sm">
-                        Support this launch
+                        Unlock Early Access
                     </h3>
 
                     {/* C) Fairness Trust Badge */}

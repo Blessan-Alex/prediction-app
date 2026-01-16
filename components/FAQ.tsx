@@ -8,15 +8,15 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
     {
         question: "What happens if we disagree?",
-        answer: "You can appoint a trusted 3rd party judge or use automated data API to decide perfectly."
+        answer: "Funds are returned back to each party in case of disagreement."
     },
     {
-        question: "What if the event can't be decided?",
+        question: "What if the outcome can't be decided?",
         answer: "The smart contract automatically refunds both sides. 100% safe."
     },
     {
         question: "Is this real money?",
-        answer: "Yes. You can add your funds and play with your friends just like in real life!"
+        answer: "Yes. You can add your funds and play with your friends just like in real life once we launch the app. Right now it is just a demo."
     }
 ];
 

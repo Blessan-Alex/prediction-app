@@ -278,27 +278,25 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                 <ContentArea key="step2">
                                     <div className="text-center pb-4">
                                         <h4 className="text-lg font-medium text-white">Who are you challenging?</h4>
-                                        <p className="text-sm text-white/70">Select a friend to invite.</p>
+                                        <p className="text-sm text-white/70">Enter email id of the friend you want to bet with.</p>
                                     </div>
 
-                                    <div className="space-y-2">
-                                        {["@mike_tyson", "@sarah_j", "@blocks_fan"].map((handle, idx) => (
-                                            <button
-                                                key={handle}
-                                                onClick={() => selectFriend(handle)}
-                                                className="w-full flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all group"
-                                                style={{ animationDelay: `${idx * 100}ms` }}
-                                            >
-                                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
-                                                    <User className="w-5 h-5 text-white/50 group-hover:text-cyan-200" />
-                                                </div>
-                                                <div className="flex flex-col items-start">
-                                                    <span className="text-sm font-medium text-white">{handle}</span>
-                                                    <span className="text-[11px] text-white/60">Online now</span>
-                                                </div>
-                                                <ArrowRight className="w-4 h-4 ml-auto text-white/20 group-hover:text-cyan-400 -translate-x-2 group-hover:translate-x-0 transition-all opacity-0 group-hover:opacity-100" />
-                                            </button>
-                                        ))}
+                                    <div className="space-y-4">
+                                        <input
+                                            type="email"
+                                            value={opponentHandle || ""}
+                                            onChange={(e) => updateState({ opponentHandle: e.target.value })}
+                                            placeholder="friend@example.com"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                                            autoFocus
+                                        />
+                                        <Button
+                                            className="w-full font-bold"
+                                            disabled={!opponentHandle || !opponentHandle.includes("@")}
+                                            onClick={() => updateState({ step: 3 })}
+                                        >
+                                            Next <ArrowRight className="w-4 h-4 ml-2" />
+                                        </Button>
                                     </div>
                                 </ContentArea>
                             )}

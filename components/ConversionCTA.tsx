@@ -67,10 +67,10 @@ export function ConversionCTA() {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4 tracking-tight">
-                Be an early tester.
+                Support this launch.
               </h2>
               <p className="text-white/50 text-[15px] mb-8">
-                Register with your email to get first access.
+                Register with your email to show your support.
               </p>
             </motion.div>
 
