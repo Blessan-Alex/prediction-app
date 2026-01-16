@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { Navbar } from "@/components/Navbar";
 import { HeroTop } from "@/components/HeroTop";
 import ProblemSolution from "@/components/ProblemSolution";
-import { ChallengeWidget } from "@/components/ChallengeWidget";
+import { ChallengeShowcase } from "@/components/ChallengeShowcase";
 import { ConversionCTA } from "@/components/ConversionCTA";
 import { Footer } from "@/components/Footer";
 
@@ -19,7 +19,7 @@ export default function Home() {
         {/* Central Widget Explainer */}
         <section id="widget-section" className="relative w-full py-20 px-4 min-h-screen flex flex-col justify-center snap-start snap-always">
           <Container className="flex flex-col items-center">
-            <ChallengeWidget />
+            <ChallengeShowcase />
 
             {/* Bottom Trust Row Removed */}
           </Container>

@@ -70,17 +70,12 @@ export default function RootLayout({
         <ToastContainer
           position="bottom-right"
           theme="dark"
-          toastClassName="!bg-[#0a0f1c]/90 !backdrop-blur-xl !border !border-white/10 !shadow-2xl !rounded-xl !text-white"
-          bodyClassName="!font-sans !text-sm !font-medium"
-          progressClassName="!bg-gradient-to-r !from-cyan-400 !to-blue-500"
         />
         <ToastContainer
           containerId="top-right"
           position="top-right"
           theme="dark"
-          toastClassName="!bg-[#0a0f1c]/90 !backdrop-blur-xl !border !border-white/10 !shadow-2xl !rounded-xl !text-white !mt-4 !mr-4"
-          bodyClassName="!font-sans !text-sm !font-medium"
-          progressClassName="!bg-gradient-to-r !from-cyan-400 !to-blue-500"
+          className="mt-4 mr-4"
         />
       </body>
     </html>

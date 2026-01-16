@@ -1,0 +1,131 @@
+"use client";
+
+import { cn } from "@/lib/cn";
+import { Check, RotateCcw } from "lucide-react";
+import { motion } from "framer-motion";
+
+export type Step = 1 | 2 | 3 | 4 | 5 | 6;
+
+interface StepsRailProps {
+    step: Step;
+    onRestart: () => void;
+    isAnimating?: boolean;
+}
+
+const STEPS = [
+    { id: 1, title: "Pick the challenge and your side", desc: "Define it. Pick your side." },
+    { id: 2, title: "Pick your friend", desc: "Select who you're challenging." },
+    { id: 3, title: "Pick the amount", desc: "Set the stakes." },
+    { id: 4, title: "Choose how it ends", desc: "Choose the oracle." },
+    { id: 5, title: "Event ends", desc: "Time passes..." },
+    { id: 6, title: "Winner gets coins", desc: "Paid out automatically." },
+] as const;
+
+export function StepsRail({ step, onRestart, isAnimating }: StepsRailProps) {
+    return (
+        <div className="relative flex flex-col h-full bg-[#0c101b]/40 backdrop-blur-[2px] border-r border-white/10 p-6 md:p-8">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-8 md:mb-12">
+                <h3 className="text-sm font-bold text-white tracking-wide uppercase opacity-80">
+                    How it works
+                </h3>
+                <button
+                    onClick={onRestart}
+                    disabled={isAnimating}
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                >
+                    <RotateCcw className="w-3 h-3" />
+                    Restart
+                </button>
+            </div>
+
+            {/* Steps List */}
+            <nav aria-label="Walkthrough steps" className="relative flex-1">
+                {/* Continuous vertical line behind steps - subtle */}
+                <div className="absolute left-[15px] top-4 bottom-4 w-[1px] bg-white/5 z-0" />
+
+                <ul className="relative z-10 space-y-8">
+                    {STEPS.map((s) => {
+                        const isCurrent = step === s.id;
+                        const isCompleted = step > s.id;
+                        const isFuture = step < s.id;
+
+                        return (
+                            <li
+                                key={s.id}
+                                className={cn(
+                                    "flex gap-4 transition-all duration-500 relative",
+                                    isFuture ? "opacity-20 blur-[1px]" : "opacity-100 blur-0"
+                                )}
+                                aria-current={isCurrent ? "step" : undefined}
+                            >
+                                {/* Active Step Glow Background */}
+                                {isCurrent && (
+                                    <motion.div
+                                        layoutId="activeStepGlow"
+                                        className="absolute -inset-x-4 -inset-y-3 bg-cyan-500/5 rounded-xl blur-md z-[-1]"
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                )}
+
+                                {/* Visual Indicator */}
+                                <div
+                                    className={cn(
+                                        "relative flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-500",
+                                        isCurrent
+                                            ? "bg-cyan-500/10 border-cyan-400 text-cyan-200 shadow-[0_0_15px_-3px_rgba(34,211,238,0.4)]"
+                                            : isCompleted
+                                                ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-500/50"
+                                                : "bg-white/5 border-white/10 text-white/30"
+                                    )}
+                                >
+                                    {isCompleted ? (
+                                        <Check className="w-4 h-4" />
+                                    ) : (
+                                        <span className="text-[11px] font-bold">{s.id.toString().padStart(2, "0")}</span>
+                                    )}
+                                </div>
+
+                                {/* Content */}
+                                <div className="flex flex-col pt-0.5">
+                                    <span
+                                        className={cn(
+                                            "font-semibold tracking-tight transition-all duration-300",
+                                            isCurrent ? "text-[15px] text-white" : isCompleted ? "text-[14px] text-white/40" : "text-[14px] text-white/40"
+                                        )}
+                                    >
+                                        {s.title}
+                                    </span>
+                                    {/* Progressive Reveal for Description */}
+                                    <motion.div
+                                        initial={false}
+                                        animate={{
+                                            height: isCurrent ? "auto" : 0,
+                                            opacity: isCurrent ? 1 : 0
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                        className="overflow-hidden"
+                                    >
+                                        <span className="block mt-1 text-[12px] text-cyan-200/60 leading-tight">
+                                            {s.desc}
+                                        </span>
+                                    </motion.div>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </nav>
+
+            {/* Trust Line (Fixed at bottom) */}
+            <div className="mt-auto pt-6 border-t border-white/5">
+                <div className="flex items-center gap-2 text-white/40">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/40 animate-pulse" />
+                    <span className="text-[11px] font-medium tracking-wide">
+                        Rules lock when they join.
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+}
