@@ -16,7 +16,7 @@ const STEPS = [
     { id: 1, title: "Pick the challenge and your side", desc: "Define it. Pick your side." },
     { id: 2, title: "Pick your friend", desc: "Select who you're challenging." },
     { id: 3, title: "Pick the amount", desc: "Set the stakes." },
-    { id: 4, title: "Choose how it ends", desc: "Choose the oracle." },
+    { id: 4, title: "Choose how it ends", desc: "Choose the judge." },
     { id: 5, title: "Event ends", desc: "Time passes..." },
     { id: 6, title: "Winner gets coins", desc: "Paid out automatically." },
 ] as const;
@@ -48,14 +48,14 @@ export function StepsRail({ step, onRestart, isAnimating }: StepsRailProps) {
                     {STEPS.map((s) => {
                         const isCurrent = step === s.id;
                         const isCompleted = step > s.id;
-                        const isFuture = step < s.id;
+                        // const isFuture = step < s.id; // Removed to keep all visible
 
                         return (
                             <li
                                 key={s.id}
                                 className={cn(
                                     "flex gap-4 transition-all duration-500 relative",
-                                    isFuture ? "opacity-20 blur-[1px]" : "opacity-100 blur-0"
+                                    "opacity-100 blur-0" // Always visible
                                 )}
                                 aria-current={isCurrent ? "step" : undefined}
                             >
