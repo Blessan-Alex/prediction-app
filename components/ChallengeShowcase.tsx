@@ -109,7 +109,7 @@ export function ChallengeShowcase() {
             {/* Main Showcase Container */}
             <motion.div
                 variants={itemVariants}
-                className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 bg-[#0c101b] shadow-2xl shadow-cyan-900/20 relative group"
+                className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-cyan-500/30 bg-[#0c101b] shadow-[0_0_30px_rgba(6,182,212,0.15)] relative group"
             >
                 {/* Subtle Star Density Overlay (Scoped) */}
                 <div

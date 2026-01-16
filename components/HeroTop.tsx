@@ -38,7 +38,7 @@ export function HeroTop() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[95vh] flex flex-col justify-center items-center pt-20 pb-16 z-10 snap-start snap-always"
+      className="relative min-h-[80vh] md:min-h-[95vh] flex flex-col justify-center items-center pt-20 pb-16 z-10 snap-start snap-always"
     >
       <Container className="flex flex-col items-center text-center flex-1 justify-center">
         <motion.div
