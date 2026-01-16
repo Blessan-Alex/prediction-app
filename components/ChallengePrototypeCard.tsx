@@ -154,13 +154,13 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
 
             {/* Main Card */}
             <GlowBorder className="w-full shadow-2xl" color={isAnimating ? "#f59e0b" : "#06b6d4"}>
-                <Card className="relative h-[540px] p-6 flex flex-col items-center bg-[#0e121f] border-white/10 overflow-hidden">
+                <Card className="relative h-[540px] p-6 flex flex-col items-center bg-gradient-to-br from-[#1e2738] to-[#131826] border-white/10 overflow-hidden">
 
                     {/* Header (Status Bar Style) */}
                     <div className="w-full mb-6 pb-4 border-b border-white/5 space-y-2">
                         <div className="flex justify-between items-start">
                             <div className="flex flex-col">
-                                <span className="text-[10px] font-bold text-white/30 tracking-widest uppercase">
+                                <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">
                                     Preview
                                 </span>
                                 {/* Dynamic Friend Status */}
@@ -207,7 +207,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                             {step === 1 && (
                                 <ContentArea key="step1">
                                     <div className="space-y-1">
-                                        <label className="text-[11px] font-bold text-cyan-200/50 uppercase tracking-wider">
+                                        <label className="text-[11px] font-bold text-cyan-100 uppercase tracking-wider">
                                             What&apos;s the challenge?
                                         </label>
                                         <input
@@ -216,14 +216,14 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                             value={eventText}
                                             onChange={handleEventChange}
                                             placeholder="e.g. Lakers vs Warriors..."
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
                                         />
                                         <div className="flex gap-2 mt-2">
                                             {["Lakers vs Warriors", "India vs Pakistan"].map(preset => (
                                                 <button
                                                     key={preset}
                                                     onClick={() => updateState({ eventText: preset, selectedSide: null })}
-                                                    className="text-[10px] px-2 py-1 bg-white/5 rounded-md text-white/40 hover:text-white hover:bg-white/10 transition-colors"
+                                                    className="text-[10px] px-2 py-1 bg-white/5 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors"
                                                 >
                                                     {preset}
                                                 </button>
@@ -232,7 +232,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                     </div>
 
                                     <div className="space-y-2 pt-2">
-                                        <label className="text-[11px] font-bold text-cyan-200/50 uppercase tracking-wider">
+                                        <label className="text-[11px] font-bold text-cyan-100 uppercase tracking-wider">
                                             Pick your side
                                         </label>
                                         <div className="grid grid-cols-2 gap-3">
@@ -246,7 +246,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                                             "relative h-20 rounded-xl border flex flex-col items-center justify-center gap-1 transition-all",
                                                             isSelected
                                                                 ? "bg-cyan-500/10 border-cyan-400 text-white shadow-[0_0_15px_-3px_rgba(34,211,238,0.25)]"
-                                                                : "bg-white/5 border-white/5 text-white/40 hover:bg-white/10 hover:border-white/20 hover:text-white"
+                                                                : "bg-white/5 border-white/5 text-white/70 hover:bg-white/10 hover:border-white/20 hover:text-white"
                                                         )}
                                                     >
                                                         <span className="font-bold text-sm text-center px-1">{s}</span>
@@ -278,7 +278,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                 <ContentArea key="step2">
                                     <div className="text-center pb-4">
                                         <h4 className="text-lg font-medium text-white">Who are you challenging?</h4>
-                                        <p className="text-sm text-white/40">Select a friend to invite.</p>
+                                        <p className="text-sm text-white/70">Select a friend to invite.</p>
                                     </div>
 
                                     <div className="space-y-2">
@@ -294,7 +294,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                                 </div>
                                                 <div className="flex flex-col items-start">
                                                     <span className="text-sm font-medium text-white">{handle}</span>
-                                                    <span className="text-[11px] text-white/30">Online now</span>
+                                                    <span className="text-[11px] text-white/60">Online now</span>
                                                 </div>
                                                 <ArrowRight className="w-4 h-4 ml-auto text-white/20 group-hover:text-cyan-400 -translate-x-2 group-hover:translate-x-0 transition-all opacity-0 group-hover:opacity-100" />
                                             </button>
@@ -308,7 +308,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                 <ContentArea key="step3">
                                     <div className="text-center pb-6">
                                         <h4 className="text-lg font-medium text-white">How much?</h4>
-                                        <p className="text-sm text-white/40">Each side locks this amount.</p>
+                                        <p className="text-sm text-white/70">Each side locks this amount.</p>
                                     </div>
 
                                     <div className="grid grid-cols-1 gap-3">
@@ -518,7 +518,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                     </div>
 
                     {/* Footer Info (Persistent) */}
-                    <div className="w-full mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[11px] text-white/30">
+                    <div className="w-full mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[11px] text-white/60">
                         <div className="flex items-center gap-2">
                             <Lock className="w-3 h-3" />
                             <span>Coins locked</span>
