@@ -1,6 +1,7 @@
 "use client";
 
 import { Container } from "@/components/layout/Container";
+import Link from "next/link";
 
 
 export function Footer() {
@@ -16,8 +17,8 @@ export function Footer() {
                 {/* Links & Disclaimer */}
                 <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
                     <div className="flex items-center gap-6">
-                        <a href="#" className="text-[13px] text-white/40 hover:text-white transition-colors">Terms</a>
-                        <a href="#" className="text-[13px] text-white/40 hover:text-white transition-colors">Privacy</a>
+                        <Link href="/terms" className="text-[13px] text-white/40 hover:text-white transition-colors">Terms</Link>
+                        <Link href="/privacy" className="text-[13px] text-white/40 hover:text-white transition-colors">Privacy</Link>
                     </div>
 
                     <div className="hidden md:block w-px h-3 bg-white/10" />

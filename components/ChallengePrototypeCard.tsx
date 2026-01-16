@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Check, Clock, User, Users, Sparkles, UserCheck, ArrowRight, Wallet, Lock, ShieldCheck, Coins } from "lucide-react";
+import { Check, Clock, User, Users, Sparkles, UserCheck, ArrowRight, Wallet, Lock, ShieldCheck, Coins, Trophy } from "lucide-react";
 import { GlowBorder } from "@/components/ui/GlowBorder";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -480,7 +480,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                                 <div className="flex items-center justify-between z-10 relative">
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                                            <Wallet className="w-5 h-5 text-white/40" />
+                                                            <Trophy className="w-5 h-5 text-amber-400" />
                                                         </div>
                                                         <div className="text-left">
                                                             <div className="text-[10px] text-white/40 uppercase tracking-wider">You won</div>

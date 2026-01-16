@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Twitter, CheckCircle2, AlertCircle } from "lucide-react";
+import { Twitter, CheckCircle2, AlertCircle, ShieldCheck, Sparkles, Mail } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
@@ -145,7 +145,7 @@ export function ConversionCTA() {
                 </Button>
               </form>
 
-              <div className="mt-3 flex items-center justify-center md:justify-start gap-6">
+              <div className="mt-8 flex items-center justify-center md:justify-start gap-6">
                 <a
                   href="#"
                   className="flex items-center gap-1.5 text-sm font-medium text-white/40 hover:text-white transition-colors"
@@ -154,6 +154,41 @@ export function ConversionCTA() {
                   Follow us on X
                 </a>
               </div>
+
+              {/* Trust Strip & FAQ */}
+              <div className="mt-8 pt-8 border-t border-white/5 space-y-8 w-full">
+
+                {/* Trust Signals */}
+                <div className="flex flex-wrap gap-x-6 gap-y-3">
+                  <div className="flex items-center gap-2 text-[11px] font-medium text-white/40 uppercase tracking-wider">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-500/50" />
+                    <span>Refund if we don&apos;t ship</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[11px] font-medium text-white/40 uppercase tracking-wider">
+                    <Sparkles className="w-3.5 h-3.5 text-purple-500/50" />
+                    <span>Early access perks</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[11px] font-medium text-white/40 uppercase tracking-wider">
+                    <Mail className="w-3.5 h-3.5 text-white/30" />
+                    <span>No spam</span>
+                  </div>
+                </div>
+
+                {/* Mini FAQ */}
+                <div className="space-y-3">
+                  {[
+                    { q: "What happens if we disagree?", a: "You can appoint a trusted 3rd party judge or use automated data API to decide perfectly." },
+                    { q: "What if the event can't be decided?", a: "The smart contract automatically refunds both sides. 100% safe." },
+                    { q: "Is this real money?", a: "No. SettleUp uses virtual 'Play Coins' for fun and reputation only." }
+                  ].map((item, i) => (
+                    <div key={i} className="group">
+                      <h4 className="text-[13px] font-medium text-white/60 mb-1">{item.q}</h4>
+                      <p className="text-[12px] text-white/30 leading-relaxed">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
             {/* Notify Me Checkbox */}
           </div>

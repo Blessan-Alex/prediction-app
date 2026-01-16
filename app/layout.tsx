@@ -36,8 +36,54 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SettleUp",
-  description: "SettleUp landing page",
+  metadataBase: new URL("https://settleupnow.vercel.app"),
+  title: {
+    default: "SettleUp - The Easiest Way to Settle Friendly Bets",
+    template: "%s | SettleUp",
+  },
+  description: "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts for your friendly challenges.",
+  openGraph: {
+    title: "SettleUp - Friendly Bets, Settled Instantly",
+    description: "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts for your friendly challenges.",
+    url: "https://settleupnow.vercel.app",
+    siteName: "SettleUp",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SettleUp - The Easiest Way to Settle Friendly Bets",
+    description: "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts.",
+    creator: "@settleup",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://settleupnow.vercel.app",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SettleUp",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts for your friendly challenges."
 };
 
 export default function RootLayout({
@@ -66,6 +112,12 @@ export default function RootLayout({
             gtag('config', 'G-LKBEPGNV6V');
           `}
         </Script>
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <ToastContainer
           position="bottom-right"
