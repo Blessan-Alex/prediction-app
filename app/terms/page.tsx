@@ -8,12 +8,12 @@ export default function TermsPage() {
                 <div className="space-y-4 text-white/70 text-sm leading-relaxed">
                     <p>Last updated: January 2026</p>
                     <p>
-                        Welcome to SettleUp. By using our service, you agree to these terms. SettleUp is a platform for friendly challenges using virtual "Play Coins".
+                        Welcome to SettleUp. By using our service, you agree to these terms. SettleUp is a platform for friendly challenges using virtual &quot;Play Coins&quot;.
                     </p>
 
                     <h2 className="text-white text-lg font-semibold pt-4">1. Virtual Currency</h2>
                     <p>
-                        "Play Coins" are virtual items with no real-world monetary value. They cannot be redeemed for cash, transferred for value, or used outside of the SettleUp platform.
+                        &quot;Play Coins&quot; are virtual items with no real-world monetary value. They cannot be redeemed for cash, transferred for value, or used outside of the SettleUp platform.
                     </p>
 
                     <h2 className="text-white text-lg font-semibold pt-4">2. Usage</h2>
@@ -23,7 +23,7 @@ export default function TermsPage() {
 
                     <h2 className="text-white text-lg font-semibold pt-4">3. Disclaimers</h2>
                     <p>
-                        The service is provided "as is". We are not responsible for any disputes arising from challenges between users.
+                        The service is provided &quot;as is&quot;. We are not responsible for any disputes arising from challenges between users.
                     </p>
                 </div>
             </Container>

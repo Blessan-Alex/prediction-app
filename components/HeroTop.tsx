@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
-import { Twitter, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export function HeroTop() {
   const ref = useRef<HTMLElement>(null);
@@ -81,22 +81,6 @@ export function HeroTop() {
                 onClick={scrollToSection}
               >
                 Register
-              </Button>
-              <Button
-                variant="secondary"
-                size="md"
-                className="w-full sm:w-auto min-w-[140px]"
-                onClick={scrollToSection}
-              >
-                Notify Me
-              </Button>
-              <Button
-                variant="ghost"
-                size="md"
-                className="gap-2 w-full sm:w-auto text-muted hover:text-white"
-              >
-                <Twitter className="h-4 w-4" />
-                <span>Follow us on X</span>
               </Button>
             </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { cn } from "@/lib/cn";
 import { useReducedMotion } from "framer-motion";
 import { StepsRail, Step } from "./StepsRail";
 import { ChallengePrototypeCard } from "./ChallengePrototypeCard";

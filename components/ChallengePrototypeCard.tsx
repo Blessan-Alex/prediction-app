@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Check, Clock, User, Users, Sparkles, UserCheck, ArrowRight, Wallet, Lock, ShieldCheck, Coins, Trophy } from "lucide-react";
+import { Check, Clock, User, Users, Sparkles, UserCheck, ArrowRight, Lock, ShieldCheck, Coins, Trophy } from "lucide-react";
 import { GlowBorder } from "@/components/ui/GlowBorder";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -139,7 +139,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
             setShowResult(false);
             setShowConfetti(false);
         }
-    }, [step, outcome]);
+    }, [step, outcome, shouldReduceMotion, selectedSide, updateState]);
 
 
 

@@ -5,6 +5,7 @@ import { HeroTop } from "@/components/HeroTop";
 import ProblemSolution from "@/components/ProblemSolution";
 import { ChallengeShowcase } from "@/components/ChallengeShowcase";
 import { ConversionCTA } from "@/components/ConversionCTA";
+import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
         </section>
 
         <ProblemSolution />
+        <FAQ />
         <ConversionCTA />
         <Footer />
       </div>

@@ -23,9 +23,7 @@ export function Footer() {
 
                     <div className="hidden md:block w-px h-3 bg-white/10" />
 
-                    <p className="text-[11px] text-white/30 uppercase tracking-wide">
-                        Play Coins are for gameplay only. Not redeemable.
-                    </p>
+
                 </div>
 
             </Container>
