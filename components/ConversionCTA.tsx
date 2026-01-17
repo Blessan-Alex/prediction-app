@@ -1,34 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, AlertCircle, ArrowRight, ArrowLeft, Mail, Sparkles, Zap, ShieldCheck, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { toast } from "react-toastify";
 import { RegistrationToast } from "@/components/toasts/RegistrationToast";
 
+const PRO_SPOTS_LEFT = 23;
+
+type View = "frontier" | "waitlist" | "observer";
+
 export function ConversionCTA() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [isLoading, setIsLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<"waitlist" | "founder" | "interested">("founder");
+  const [view, setView] = useState<View>("frontier");
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  // Handle Waitlist & Founder Submissions
-  const handleFormSubmit = async (e: React.FormEvent) => {
+  // Handle Waitlist Submission
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       setStatus("error");
       return;
     }
-
-    if (activeTab === "founder") {
-      setShowPaymentModal(true);
-    } else {
-      submitData();
-    }
+    submitData();
   };
 
   const submitData = async () => {
@@ -42,7 +41,7 @@ export function ConversionCTA() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email,
-          type: activeTab, // "waitlist" or "founder"
+          type: "waitlist",
         }),
       });
 
@@ -52,7 +51,6 @@ export function ConversionCTA() {
       toast(<RegistrationToast />, { containerId: "top-right" });
       setStatus("success");
       setEmail("");
-      setShowPaymentModal(false);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Something went wrong");
       setStatus("error");
@@ -79,138 +77,242 @@ export function ConversionCTA() {
     }
   };
 
+  // Back Navigation Logic
+  const handleBack = () => {
+    setStatus("idle");
+    if (view === "waitlist") setView("frontier");
+    if (view === "observer") setView("waitlist");
+  };
+
+  // Progress line width/position based on view
+  const getProgressStyles = () => {
+    switch (view) {
+      case "frontier": return { width: "33.33%", x: "0%" };
+      case "waitlist": return { width: "33.33%", x: "100%" };
+      case "observer": return { width: "33.33%", x: "200%" };
+    }
+  };
+
   return (
     <section className="relative w-full py-24 px-4 overflow-hidden" id="cta">
       {/* Payment Modal */}
       {showPaymentModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <PaymentModalContent onClose={() => setShowPaymentModal(false)} onComplete={submitData} />
+          <PaymentModalContent onClose={() => setShowPaymentModal(false)} onComplete={() => {
+            setShowPaymentModal(false);
+            toast.success("Welcome to the Frontier!");
+          }} />
         </div>
       )}
 
-      <Container className="max-w-3xl mx-auto">
-        <div className="flex flex-col items-center text-center">
+      <Container className="max-w-3xl mx-auto relative z-10 flex justify-center">
 
-          {/* Main CTA Content */}
-          <div className="w-full flex flex-col items-center transition-all duration-300">
+        {/* Local Vignette */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none"
+          style={{
+            background: "radial-gradient(circle at 50% 40%, rgba(59,130,246,0.18) 0%, rgba(0,0,0,0) 55%)"
+          }}
+        />
+
+        {/* Glass Panel Container */}
+        <div className="w-full max-w-[560px] relative bg-[#0c101b]/55 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_30px_120px_rgba(0,0,0,0.65)] ring-1 ring-cyan-500/10 overflow-hidden">
+
+          {/* Top Progress Line */}
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-white/5 z-20">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-tight">
-                {activeTab === "founder" ? "Become a Member." : "Join the journey."}
+              className="h-full bg-gradient-to-r from-cyan-500 to-blue-500"
+              initial={false}
+              animate={getProgressStyles()}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+          </div>
+
+          {/* Header Zone with Gradient */}
+          <div className="relative pt-6 md:pt-8 px-6 md:px-8 pb-6 border-b border-white/10">
+            <div className="absolute inset-0 bg-cyan-500/[0.03] pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col md:items-start items-center text-center md:text-left">
+              {/* Back Button */}
+              {view !== "frontier" && (
+                <div className="w-full flex md:justify-start justify-center mb-4">
+                  <button
+                    onClick={handleBack}
+                    aria-label="Back"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/60 hover:text-white hover:bg-white/8 transition-all"
+                  >
+                    <ArrowLeft className="w-3 h-3" />
+                    Back
+                  </button>
+                </div>
+              )}
+
+              {/* Scarcity / Urgency Header */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-2 mb-4 flex-wrap md:justify-start justify-center"
+              >
+                <div className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs font-medium">
+                  First 100 get Pro free for 1 year
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                  {PRO_SPOTS_LEFT} spots left
+                </div>
+              </motion.div>
+
+              {/* Headings */}
+              <h2 className="text-3xl font-semibold text-white mb-2 tracking-tight">
+                {view === "frontier" && "Become a Frontier Member"}
+                {view === "waitlist" && "Join the waitlist"}
+                {view === "observer" && "No worries"}
               </h2>
-              <p className="text-white/50 text-[15px] mb-8 min-h-[48px] max-w-lg mx-auto">
-                {activeTab === "founder" && "Support the build with $5. Get lifetime pro access + unique badge."}
-                {activeTab === "waitlist" && "Get early access when we launch. No spam, just updates."}
-                {activeTab === "interested" && "Not ready to commit? Just let us know you're watching."}
+              <p className="text-white/50 text-[15px] leading-relaxed max-w-sm">
+                {view === "frontier" && "Pay $5 to join early. If we don’t ship, we refund it."}
+                {view === "waitlist" && "Get early access when we launch. One email, no spam."}
+                {view === "observer" && "No signup needed. You can still follow along."}
               </p>
-            </motion.div>
 
-            {/* Custom Tab Switcher */}
-            <div className="w-full max-w-sm mb-8 p-1 bg-white/5 rounded-lg grid grid-cols-3 gap-1">
-              {[
-                { id: "founder", label: "Frontier" },
-                { id: "waitlist", label: "Waitlist" },
-                { id: "interested", label: "Observer" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id as "waitlist" | "founder" | "interested");
-                    setStatus("idle");
-                  }}
-                  className={cn(
-                    "py-2 text-sm font-medium rounded-md transition-all relative", // Increased font size
-                    activeTab === tab.id
-                      ? "bg-white/10 text-white shadow-sm"
-                      : "text-white/60 hover:text-white hover:bg-white/5", // Brightened text
-                    tab.id === "founder" && activeTab === "founder" && "shadow-[0_0_15px_-3px_rgba(34,211,238,0.6)] text-cyan-50" // Glow effect for Frontier
-                  )}
-                >
-                  {tab.label}
-                </button>
-              ))}
+              {/* Benefits Row */}
+              <div className="flex flex-wrap items-center gap-2 mt-4 md:justify-start justify-center">
+                {view === "frontier" && (
+                  <>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
+                      <Sparkles className="w-3 h-3 text-cyan-400" />
+                      Pro for 1 year
+                    </div>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
+                      <Zap className="w-3 h-3 text-yellow-400" />
+                      Early access
+                    </div>
+
+                  </>
+                )}
+
+                {view === "waitlist" && (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
+                    <Zap className="w-3 h-3 text-yellow-400" />
+                    Early access
+                  </div>
+                )}
+              </div>
             </div>
+          </div>
 
-            {/* Dynamic Content based on Active Tab */}
-            <div className="w-full max-w-sm min-h-[200px]">
-
-              {/* WAITLIST & FOUNDER MODE */}
-              {(activeTab === "waitlist" || activeTab === "founder") && (
-                <form
-                  onSubmit={handleFormSubmit}
-                  className={cn(
-                    "flex flex-col gap-3 transition-all"
-                  )}
+          {/* Main CTA Body Content */}
+          <div className="p-6 md:p-8 bg-black/20">
+            <div className="w-full transition-all duration-300">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={view}
+                  initial={{ opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -8 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col md:items-start items-center w-full"
                 >
-                  <div className="relative">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (status === "error") setStatus("idle");
-                      }}
-                      placeholder="you@example.com"
-                      className={cn(
-                        "w-full h-12 bg-white/5 border rounded-lg px-4 text-white text-sm placeholder:text-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500/50",
-                        status === "error"
-                          ? "border-red-500/50 focus:border-red-500"
-                          : "border-white/10 focus:border-cyan-500/50"
-                      )}
-                    />
-                    {status === "error" && (
-                      <div className="absolute -bottom-6 left-0 text-[11px] text-red-400 flex items-center gap-1.5 opacity-90">
-                        <AlertCircle className="w-3 h-3" />
-                        Enter a valid email.
-                      </div>
+                  <div className="w-full max-w-md flex flex-col gap-3">
+                    {/* FRONTIER VIEW */}
+                    {view === "frontier" && (
+                      <>
+                        <Button
+                          size="lg"
+                          onClick={() => setShowPaymentModal(true)}
+                          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none h-12 shadow-[0_0_20px_-5px_rgba(6,182,212,0.5)]"
+                        >
+                          Pay $5 & Join
+                        </Button>
+                        <button
+                          onClick={() => {
+                            setView("waitlist");
+                            setStatus("idle");
+                          }}
+                          className="w-full h-10 flex items-center justify-center gap-2 rounded-lg bg-white/4 border border-white/10 text-white/60 hover:text-white hover:bg-white/8 hover:border-white/20 transition-all font-medium text-xs"
+                        >
+                          <span>I can&apos;t pay, join waitlist</span>
+                          <ArrowDownRight className="w-3.5 h-3.5" />
+                        </button>
+                      </>
                     )}
-                    {status === "success" && (
-                      <div className="absolute -bottom-6 left-0 text-[11px] text-emerald-400 flex items-center gap-1.5 opacity-90">
-                        <CheckCircle2 className="w-3 h-3" />
-                        {activeTab === "founder" ? "Redirecting to payment..." : "You’re on the list."}
-                      </div>
+
+                    {/* WAITLIST VIEW */}
+                    {view === "waitlist" && (
+                      <form onSubmit={handleWaitlistSubmit} className="w-full flex flex-col gap-3">
+                        <div className="relative group">
+                          <div className="relative">
+                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 group-focus-within:text-cyan-400 transition-colors" />
+                            <input
+                              type="email"
+                              value={email}
+                              onChange={(e) => {
+                                setEmail(e.target.value);
+                                if (status === "error") setStatus("idle");
+                              }}
+                              placeholder="Enter your email"
+                              className={cn(
+                                "w-full h-12 bg-white/5 border rounded-lg pl-10 pr-4 text-white text-base placeholder:text-white/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500/50 shadow-inner shadow-black/30",
+                                status === "error"
+                                  ? "border-red-500/50 focus:border-red-500"
+                                  : "border-white/15 focus:border-cyan-500/50"
+                              )}
+                            />
+                          </div>
+                          {status === "error" && (
+                            <div className="mt-2 text-[11px] text-red-400 flex items-center gap-1.5 opacity-90" aria-live="polite">
+                              <AlertCircle className="w-3 h-3" />
+                              Enter a valid email.
+                            </div>
+                          )}
+                          {status === "success" && (
+                            <div className="mt-2 text-[11px] text-emerald-400 flex items-center gap-1.5 opacity-90" aria-live="polite">
+                              <CheckCircle2 className="w-3 h-3" />
+                              You’re on the list.
+                            </div>
+                          )}
+                        </div>
+                        <Button
+                          type="submit"
+                          size="lg"
+                          isLoading={isLoading}
+                          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none h-12 shadow-[0_0_15px_-5px_rgba(6,182,212,0.4)] mt-1" // Primary style
+                        >
+                          Join waitlist
+                        </Button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setView("observer");
+                            setStatus("idle");
+                          }}
+                          className="w-full h-10 flex items-center justify-center gap-2 rounded-lg bg-white/4 border border-white/10 text-white/60 hover:text-white hover:bg-white/8 hover:border-white/20 transition-all font-medium text-xs mt-1"
+                        >
+                          <span>I&apos;d rather not share email</span>
+                          <ArrowDownRight className="w-3.5 h-3.5" />
+                        </button>
+                      </form>
+                    )}
+
+                    {/* OBSERVER VIEW */}
+                    {view === "observer" && (
+                      <>
+                        <Button
+                          variant="secondary"
+                          onClick={handleInterested}
+                          className="w-full h-12 bg-white/10 hover:bg-white/15 text-white border-white/10"
+                        >
+                          I&apos;ll just watch for now
+                        </Button>
+                        <p className="text-white/30 text-xs text-center md:text-left mt-2">
+                          No email. No commitment.
+                        </p>
+                      </>
                     )}
                   </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    isLoading={isLoading}
-                    className={cn(
-                      "w-full relative overflow-hidden group",
-                      activeTab === "founder" && "bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none"
-                    )}
-                  >
-                    {activeTab === "founder" ? (
-                      <span className="flex items-center gap-2 justify-center">
-                        Pay $5 & Join
-                      </span>
-                    ) : (
-                      "Join Waitlist"
-                    )}
-                    {activeTab === "founder" && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                    )}
-                  </Button>
-                </form>
-              )}
-
-              {/* INTERESTED MODE */}
-              {activeTab === "interested" && (
-                <div className="flex flex-col gap-4 items-center animate-in fade-in slide-in-from-bottom-4 duration-300">
-                  <Button
-                    variant="secondary"
-                    onClick={handleInterested}
-                    className="w-full"
-                  >
-                    I&apos;m just interested
-                  </Button>
-                </div>
-              )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -226,62 +328,76 @@ function PaymentModalContent({ onClose, onComplete }: { onClose: () => void; onC
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="relative w-full max-w-sm bg-black/90 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl"
+      className="relative w-full max-w-md bg-zinc-900 border border-white/10 rounded-3xl p-6 shadow-2xl overflow-hidden"
     >
+      {/* Background Gradients */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
+
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors z-10"
+        className="absolute top-4 right-4 p-2 text-white/40 hover:text-white hover:bg-white/5 rounded-full transition-all z-10"
       >
         ✕
       </button>
 
       {step === "select" ? (
         <>
-          <h3 className="text-xl font-semibold text-white mb-2">Choose Payment Method</h3>
-          <p className="text-sm text-white/50 mb-6">One-time payment of $5 for lifetime access.</p>
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-white mb-1">Choose Payment Method</h3>
+            <p className="text-sm text-white/50">One-time payment of $5 for lifetime access.</p>
+          </div>
 
-          <div className="flex flex-col gap-3 mb-6">
+          <div className="flex flex-col gap-3 mb-8">
             <button
               onClick={() => setStep("gpay")}
-              className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2 group"
+              className="w-full p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-between group"
             >
               <span className="font-semibold text-white">GPay</span>
+              <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 transition-colors" />
             </button>
             <button
               onClick={() => setStep("paypal")}
-              className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2 group"
+              className="w-full p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-between group"
             >
               <span className="font-semibold text-white">PayPal</span>
+              <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 transition-colors" />
             </button>
           </div>
 
-          <div className="text-center">
-            <p className="text-xs text-emerald-400/80">
-              ✓ If we don’t ship, you get a full refund.
+          <div className="text-center pt-4 border-t border-white/5">
+            <p className="text-xs text-white/40">
+              If we don&apos;t ship, you get a refund.
             </p>
           </div>
         </>
       ) : (
         <>
-          <div className="flex items-center gap-2 mb-2">
-            <button onClick={() => setStep("select")} className="text-white/50 hover:text-white text-sm">← Back</button>
+          <div className="flex items-center gap-2 mb-6">
+            <button onClick={() => setStep("select")} className="text-white/50 hover:text-white text-sm flex items-center gap-1 transition-colors">
+              ← Back
+            </button>
           </div>
-          <h3 className="text-xl font-semibold text-white mb-2">
+
+          <h3 className="text-xl font-semibold text-white mb-2 text-center">
             {step === "gpay" ? "Scan GPay QR" : "Scan PayPal QR"}
           </h3>
-          <p className="text-sm text-white/50 mb-6">Complete payment to finalize registration.</p>
+          <p className="text-sm text-white/50 mb-6 text-center">Complete payment to finalize registration.</p>
 
-          <div className="w-full aspect-square bg-white/5 rounded-xl border border-white/10 flex items-center justify-center mb-6 relative overflow-hidden">
-            {/* Placeholder for distinct QRs */}
-            <div className="absolute inset-0 bg-[url('https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=OpikaPreorder')] bg-cover opacity-50 blur-sm" />
-            <span className="relative z-10 text-xs font-mono text-cyan-400 bg-black/50 px-3 py-1.5 rounded backdrop-blur-md border border-cyan-500/20">
-              {step === "gpay" ? "GPay QR CODE" : "PayPal QR CODE"}
-            </span>
+          <div className="w-full aspect-square bg-white text-black p-4 rounded-xl mb-6 mx-auto max-w-[280px] shadow-lg flex items-center justify-center">
+            {/* Real QR would go here, using placeholder for demo */}
+            <div className="relative w-full h-full opacity-90">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=OpikaPreorder"
+                alt="Payment QR Code"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
 
           <Button
             onClick={onComplete}
-            className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold"
+            className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold h-12"
           >
             I&apos;ve Completed Payment
           </Button>
@@ -294,3 +410,4 @@ function PaymentModalContent({ onClose, onComplete }: { onClose: () => void; onC
     </motion.div>
   );
 }
+
