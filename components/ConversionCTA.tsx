@@ -9,7 +9,7 @@ import { Container } from "@/components/layout/Container";
 import { toast } from "react-toastify";
 import { RegistrationToast } from "@/components/toasts/RegistrationToast";
 
-const PRO_SPOTS_LEFT = 23;
+
 
 type View = "frontier" | "waitlist" | "observer";
 
@@ -159,7 +159,7 @@ export function ConversionCTA() {
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                  {PRO_SPOTS_LEFT} spots left
+                  Limited spots left
                 </div>
               </motion.div>
 
@@ -170,34 +170,10 @@ export function ConversionCTA() {
                 {view === "observer" && "No worries"}
               </h2>
               <p className="text-white/50 text-[15px] leading-relaxed max-w-sm">
-                {view === "frontier" && "Pay $5 to join early. If we don’t ship, we refund it."}
+                {view === "frontier" && "Pay $1 to join early. Refund if we don’t ship."}
                 {view === "waitlist" && "Get early access when we launch. One email, no spam."}
                 {view === "observer" && "No signup needed. You can still follow along."}
               </p>
-
-              {/* Benefits Row */}
-              <div className="flex flex-wrap items-center gap-2 mt-4 md:justify-start justify-center">
-                {view === "frontier" && (
-                  <>
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
-                      <Sparkles className="w-3 h-3 text-cyan-400" />
-                      Pro for 1 year
-                    </div>
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
-                      <Zap className="w-3 h-3 text-yellow-400" />
-                      Early access
-                    </div>
-
-                  </>
-                )}
-
-                {view === "waitlist" && (
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
-                    <Zap className="w-3 h-3 text-yellow-400" />
-                    Early access
-                  </div>
-                )}
-              </div>
             </div>
           </div>
 
@@ -222,7 +198,7 @@ export function ConversionCTA() {
                           onClick={() => setShowPaymentModal(true)}
                           className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none h-12 shadow-[0_0_20px_-5px_rgba(6,182,212,0.5)]"
                         >
-                          Pay $5 & Join
+                          Pay & Join
                         </Button>
                         <button
                           onClick={() => {
@@ -344,7 +320,7 @@ function PaymentModalContent({ onClose, onComplete }: { onClose: () => void; onC
         <>
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-white mb-1">Choose Payment Method</h3>
-            <p className="text-sm text-white/50">One-time payment of $5 for lifetime access.</p>
+            <p className="text-sm text-white/50">One-time payment of $1 for lifetime access.</p>
           </div>
 
           <div className="flex flex-col gap-3 mb-8">
