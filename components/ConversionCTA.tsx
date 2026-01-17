@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, AlertCircle, ArrowRight, ArrowLeft, Mail, Sparkles, Zap, ShieldCheck, ArrowDownRight } from "lucide-react";
+import { CheckCircle2, AlertCircle, ArrowRight, ArrowLeft, Mail, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
