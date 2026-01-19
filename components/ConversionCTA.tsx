@@ -16,6 +16,7 @@ type View = "frontier" | "waitlist" | "observer";
 export function ConversionCTA() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("Enter a valid email.");
   const [isLoading, setIsLoading] = useState(false);
   const [view, setView] = useState<View>("frontier");
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -24,6 +25,7 @@ export function ConversionCTA() {
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
+      setErrorMessage("Enter a valid email.");
       setStatus("error");
       return;
     }
@@ -34,6 +36,7 @@ export function ConversionCTA() {
     try {
       setIsLoading(true);
       setStatus("idle");
+      setErrorMessage("Enter a valid email."); // Default reset
 
       // Simulate API call
       const res = await fetch("/api/users", {
@@ -46,13 +49,20 @@ export function ConversionCTA() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to register");
+      if (!res.ok) {
+        if (data.error === "Email already exists") {
+          setErrorMessage("You are already on the list");
+        } else {
+          setErrorMessage("Enter a valid email.");
+        }
+        throw new Error(data.error || "Failed to register");
+      }
 
       toast(<RegistrationToast />, { containerId: "top-right" });
       setStatus("success");
       setEmail("");
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Something went wrong");
+      // toast.error(err instanceof Error ? err.message : "Something went wrong");
       setStatus("error");
     } finally {
       setIsLoading(false);
@@ -224,7 +234,10 @@ export function ConversionCTA() {
                               value={email}
                               onChange={(e) => {
                                 setEmail(e.target.value);
-                                if (status === "error") setStatus("idle");
+                                if (status === "error") {
+                                  setStatus("idle");
+                                  setErrorMessage("Enter a valid email.");
+                                }
                               }}
                               placeholder="Enter your email"
                               className={cn(
@@ -238,7 +251,7 @@ export function ConversionCTA() {
                           {status === "error" && (
                             <div className="mt-2 text-[11px] text-red-400 flex items-center gap-1.5 opacity-90" aria-live="polite">
                               <AlertCircle className="w-3 h-3" />
-                              Enter a valid email.
+                              {errorMessage}
                             </div>
                           )}
                           {status === "success" && (
