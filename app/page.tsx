@@ -2,11 +2,13 @@ import { SpaceBackground } from "@/components/SpaceBackground";
 import { Container } from "@/components/layout/Container";
 import { Navbar } from "@/components/Navbar";
 import { HeroTop } from "@/components/HeroTop";
-import ProblemSolution from "@/components/ProblemSolution";
+
 import { ConversionCTA } from "@/components/ConversionCTA";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { HeroVideoSection } from "@/components/HeroVideoSection";
+
+import { ExplainerSection } from "@/components/ExplainerSection";
 
 export default function Home() {
   return (
@@ -18,15 +20,13 @@ export default function Home() {
         <HeroTop />
 
         {/* Central Widget Explainer */}
-        <section id="widget-section" className="relative w-full pb-4 px-4 min-h-screen flex flex-col justify-center snap-start snap-always -mt-52 md:-mt-32 z-20">
+        <section id="demo" className="relative w-full pb-28 px-4 min-h-screen flex flex-col justify-center snap-start snap-always -mt-10 md:-mt-16 pt-20 md:pt-24 z-20">
           <Container className="flex flex-col items-center">
             <HeroVideoSection />
-
-            {/* Bottom Trust Row Removed */}
           </Container>
         </section>
 
-        <ProblemSolution />
+        <ExplainerSection />
         <FAQ />
         <ConversionCTA />
         <Footer />

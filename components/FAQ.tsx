@@ -7,16 +7,24 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
     {
-        question: "What happens if we disagree?",
-        answer: "Funds are returned back to each party in case of disagreement."
-    },
-    {
-        question: "What if the outcome can't be decided?",
-        answer: "The smart contract automatically refunds both sides. 100% safe."
-    },
-    {
         question: "Is this real money?",
-        answer: "Yes. You can add your funds and play with your friends just like in real life once we launch the app. Right now it is just a demo."
+        answer: "Yes. You put in real dollars. The winner gets real dollars. This is not fake currency or points."
+    },
+    {
+        question: "What if me and my friend disagree on who won?",
+        answer: "If it is a private bet, both of you have to confirm the winner. If you say different names, the bet is cancelled and both of you get your money back."
+    },
+    {
+        question: "What if my friend just ignores the app after the bet?",
+        answer: "If 48 hours pass and they have not responded, the bet is cancelled. Both of you get refunded."
+    },
+    {
+        question: "Do you take a cut of the money?",
+        answer: "No. The winner gets the full amount."
+    },
+    {
+        question: "Is this legal?",
+        answer: "This is for informal bets between friends. Two people who know each other, betting on something they care about. We are not a casino or a gambling company."
     }
 ];
 
@@ -67,7 +75,7 @@ export function FAQ() {
                                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
                                     className="w-full flex items-center justify-between p-6 text-left group"
                                 >
-                                    <span className="text-lg md:text-xl font-medium text-white/90 group-hover:text-white transition-colors">
+                                    <span className="text-xl md:text-2xl font-medium text-white/90 group-hover:text-white transition-colors">
                                         {faq.question}
                                     </span>
                                     <div className={`ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition-all duration-300 ${openIndex === i ? 'bg-cyan-500/20 rotate-180' : 'group-hover:bg-white/10'}`}>
@@ -86,7 +94,7 @@ export function FAQ() {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.3, ease: "easeInOut" }}
                                         >
-                                            <div className="px-6 pb-6 pt-0 text-white/60 leading-relaxed text-base md:text-lg border-t border-white/5 mt-2">
+                                            <div className="px-6 pb-6 pt-0 text-white/60 leading-relaxed text-lg border-t border-white/5 mt-2">
                                                 <div className="pt-4">
                                                     {faq.answer}
                                                 </div>

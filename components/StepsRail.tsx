@@ -23,22 +23,7 @@ const STEPS = [
 
 export function StepsRail({ step, onRestart, isAnimating }: StepsRailProps) {
     return (
-        <div className="relative flex flex-col h-full bg-[#0c101b]/40 backdrop-blur-[2px] border-r border-white/10 p-6 md:p-8">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8 md:mb-12">
-                <h3 className="text-sm font-bold text-white tracking-wide uppercase opacity-80">
-                    How it works
-                </h3>
-                <button
-                    onClick={onRestart}
-                    disabled={isAnimating}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                >
-                    <RotateCcw className="w-3 h-3" />
-                    Restart
-                </button>
-            </div>
-
+        <div className="relative flex flex-col h-full bg-transparent p-0 border-none">
             {/* Steps List */}
             <nav aria-label="Walkthrough steps" className="relative flex-1">
                 {/* Continuous vertical line behind steps - subtle */}
@@ -117,14 +102,16 @@ export function StepsRail({ step, onRestart, isAnimating }: StepsRailProps) {
                 </ul>
             </nav>
 
-            {/* Trust Line (Fixed at bottom) */}
-            <div className="mt-auto pt-6 border-t border-white/5">
-                <div className="flex items-center gap-2 text-white/40">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/40 animate-pulse" />
-                    <span className="text-[11px] font-medium tracking-wide">
-                        Rules lock when they join.
-                    </span>
-                </div>
+            {/* Restart Action */}
+            <div className="mt-8 pt-4 border-t border-white/5">
+                <button
+                    onClick={onRestart}
+                    disabled={isAnimating || step === 1}
+                    className="flex items-center gap-2 text-xs font-medium text-white/30 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
+                >
+                    <RotateCcw className="w-3 h-3 group-hover:-rotate-180 transition-transform duration-500" />
+                    Restart Demo
+                </button>
             </div>
         </div>
     );

@@ -140,12 +140,9 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
 
 
     return (
-        <div className="relative w-full max-w-[380px] md:max-w-[440px]">
+        <div className="relative w-full md:w-[440px] flex-shrink-0">
 
-            {/* "Try it" Micro Label */}
-            <div className="absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-bold text-white/30 uppercase tracking-widest pointer-events-none">
-                Try it
-            </div>
+
 
             {/* Main Card */}
             <GlowBorder className="w-full shadow-2xl" color={isAnimating ? "#f59e0b" : "#06b6d4"}>
@@ -156,7 +153,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                         <div className="flex justify-between items-start">
                             <div className="flex flex-col">
                                 <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">
-                                    Preview
+                                    Demo
                                 </span>
                                 {/* Dynamic Friend Status */}
                                 <AnimatePresence>
@@ -272,8 +269,8 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                             {step === 2 && (
                                 <ContentArea key="step2">
                                     <div className="text-center pb-4">
-                                        <h4 className="text-lg font-medium text-white">Who are you challenging?</h4>
-                                        <p className="text-sm text-white/70">Enter email id of the friend you want to bet with.</p>
+                                        <h4 className="text-lg font-medium text-white">Invite a friend</h4>
+                                        <p className="text-sm text-white/70">They&apos;ll get a link to join.</p>
                                     </div>
 
                                     <div className="space-y-4">
@@ -510,16 +507,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                         </AnimatePresence>
                     </div>
 
-                    {/* Footer Info (Persistent) */}
-                    <div className="w-full mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-[11px] text-white/60">
-                        <div className="flex items-center gap-2">
-                            <Lock className="w-3 h-3" />
-                            <span>Coins locked</span>
-                        </div>
-                        <div>
-                            {step > 2 && `$${(amount || 0) * 2} Pool`}
-                        </div>
-                    </div>
+
 
                     {/* Overlay: Escrow Locking Animation */}
                     <AnimatePresence>

@@ -8,17 +8,19 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { toast } from "react-toastify";
 import { RegistrationToast } from "@/components/toasts/RegistrationToast";
+import { PaymentModalContent } from "@/components/PaymentModal";
 
-
+// ... existing imports
 
 type View = "frontier" | "waitlist" | "observer";
 
 export function ConversionCTA() {
+
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("Enter a valid email.");
   const [isLoading, setIsLoading] = useState(false);
-  const [view, setView] = useState<View>("frontier");
+  const [view, setView] = useState<View>("waitlist");
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // Handle Waitlist Submission
@@ -62,7 +64,6 @@ export function ConversionCTA() {
       setStatus("success");
       setEmail("");
     } catch (err) {
-      // toast.error(err instanceof Error ? err.message : "Something went wrong");
       setStatus("error");
     } finally {
       setIsLoading(false);
@@ -81,7 +82,6 @@ export function ConversionCTA() {
       setStatus("success");
     } catch (err) {
       console.error("Failed to track interest:", err);
-      // Still show success to user even if tracking fails
       toast.success("Thanks for your interest! We'll keep building.");
       setStatus("success");
     }
@@ -90,7 +90,7 @@ export function ConversionCTA() {
   // Back Navigation Logic
   const handleBack = () => {
     setStatus("idle");
-    if (view === "waitlist") setView("frontier");
+    if (view === "frontier") setView("waitlist");
     if (view === "observer") setView("waitlist");
   };
 
@@ -104,7 +104,7 @@ export function ConversionCTA() {
   };
 
   return (
-    <section className="relative w-full py-24 px-4 overflow-hidden" id="cta">
+    <section className="relative w-full py-24 md:py-32 px-4 overflow-hidden" id="cta">
       {/* Payment Modal */}
       {showPaymentModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
@@ -164,8 +164,8 @@ export function ConversionCTA() {
                 viewport={{ once: true }}
                 className="flex items-center gap-2 mb-4 flex-wrap md:justify-start justify-center"
               >
-                <div className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs font-medium">
-                  First 100 get Pro free for 1 year
+                <div className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs font-medium uppercase tracking-wide">
+                  First 100 get Pro free
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -173,15 +173,16 @@ export function ConversionCTA() {
                 </div>
               </motion.div>
 
-              {/* Headings */}
-              <h2 className="text-3xl font-semibold text-white mb-2 tracking-tight">
-                {view === "frontier" && "Become a Frontier Member"}
-                {view === "waitlist" && "Join the waitlist"}
+              {/* Headings - Typography Update: text-2xl md:text-3xl lg:text-4xl */}
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-3 tracking-tight">
+                {view === "waitlist" && "Get in early"}
+                {view === "frontier" && "Frontier Member"}
                 {view === "observer" && "No worries"}
               </h2>
-              <p className="text-white/50 text-[15px] leading-relaxed max-w-sm">
-                {view === "frontier" && "Pay $1 to join early. Refund if we don’t ship."}
-                {view === "waitlist" && "Get early access when we launch. One email, no spam."}
+              {/* Body Text - Typography Update: text-sm md:text-base leading-7 */}
+              <p className="text-white/60 text-sm md:text-base leading-7 max-w-sm">
+                {view === "waitlist" && "We are letting in the first 100 people before the public launch. If you join now, you get the Pro version free for one year."}
+                {view === "frontier" && "You get priority access. If we do not launch, you get a full refund."}
                 {view === "observer" && "No signup needed. You can still follow along."}
               </p>
             </div>
@@ -200,30 +201,7 @@ export function ConversionCTA() {
                   className="flex flex-col md:items-start items-center w-full"
                 >
                   <div className="w-full max-w-md flex flex-col gap-3">
-                    {/* FRONTIER VIEW */}
-                    {view === "frontier" && (
-                      <>
-                        <Button
-                          size="lg"
-                          onClick={() => setShowPaymentModal(true)}
-                          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none h-12 shadow-[0_0_20px_-5px_rgba(6,182,212,0.5)]"
-                        >
-                          Pay & Join
-                        </Button>
-                        <button
-                          onClick={() => {
-                            setView("waitlist");
-                            setStatus("idle");
-                          }}
-                          className="w-full h-10 flex items-center justify-center gap-2 rounded-lg bg-white/4 border border-white/10 text-white/60 hover:text-white hover:bg-white/8 hover:border-white/20 transition-all font-medium text-xs"
-                        >
-                          <span>I can&apos;t pay, join waitlist</span>
-                          <ArrowDownRight className="w-3.5 h-3.5" />
-                        </button>
-                      </>
-                    )}
-
-                    {/* WAITLIST VIEW */}
+                    {/* WAITLIST VIEW (DEFAULT) */}
                     {view === "waitlist" && (
                       <form onSubmit={handleWaitlistSubmit} className="w-full flex flex-col gap-3">
                         <div className="relative group">
@@ -240,6 +218,7 @@ export function ConversionCTA() {
                                 }
                               }}
                               placeholder="Enter your email"
+                              // Typography: text-base
                               className={cn(
                                 "w-full h-12 bg-white/5 border rounded-lg pl-10 pr-4 text-white text-base placeholder:text-white/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500/50 shadow-inner shadow-black/30",
                                 status === "error"
@@ -261,26 +240,57 @@ export function ConversionCTA() {
                             </div>
                           )}
                         </div>
+
                         <Button
                           type="submit"
                           size="lg"
                           isLoading={isLoading}
-                          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none h-12 shadow-[0_0_15px_-5px_rgba(6,182,212,0.4)] mt-1" // Primary style
+                          // Typography: text-sm md:text-base
+                          className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold border-none h-12 text-sm md:text-base shadow-[0_0_15px_-5px_rgba(6,182,212,0.4)] mt-1"
                         >
-                          Join waitlist
+                          Get Early Access
                         </Button>
+
+                        {/* Secondary CTA: Frontier Upsell - GOLDEN PREMIUM STYLE */}
                         <button
                           type="button"
                           onClick={() => {
-                            setView("observer");
+                            setView("frontier");
                             setStatus("idle");
                           }}
-                          className="w-full h-10 flex items-center justify-center gap-2 rounded-lg bg-white/4 border border-white/10 text-white/60 hover:text-white hover:bg-white/8 hover:border-white/20 transition-all font-medium text-xs mt-1"
+                          className="w-full h-auto py-3 flex flex-col items-center justify-center gap-0.5 rounded-lg bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/30 hover:border-amber-400/50 hover:from-amber-500/20 hover:to-amber-600/10 transition-all group mt-3 shadow-[0_0_15px_-5px_rgba(245,158,11,0.2)]"
                         >
-                          <span>I&apos;d rather not share email</span>
-                          <ArrowDownRight className="w-3.5 h-3.5" />
+                          <span className="text-xs font-bold text-amber-200 group-hover:text-amber-100 transition-colors uppercase tracking-wide flex items-center gap-2">
+                            <span className="hidden group-hover:inline-block transition-all">✨</span>
+                            Pay $1 to become a Frontier Member
+                            <span className="hidden group-hover:inline-block transition-all">✨</span>
+                          </span>
+                          <span className="text-[11px] text-amber-500/60 group-hover:text-amber-500/80">Guaranteed priority access</span>
                         </button>
                       </form>
+                    )}
+
+                    {/* FRONTIER VIEW (SECONDARY) */}
+                    {view === "frontier" && (
+                      <>
+                        <Button
+                          size="lg"
+                          onClick={() => setShowPaymentModal(true)}
+                          className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black font-bold border-none h-12 text-sm md:text-base shadow-[0_0_25px_-5px_rgba(245,158,11,0.6)]"
+                        >
+                          Pay 1 dollar
+                        </Button>
+                        <button
+                          onClick={() => {
+                            setView("observer"); // CHANGED: Goes to Observer (step 3)
+                            setStatus("idle");
+                          }}
+                          className="w-full h-10 flex items-center justify-center gap-2 rounded-lg bg-white/4 border border-white/10 text-white/50 hover:text-white hover:bg-white/8 hover:border-white/20 transition-all font-medium text-xs text-center leading-tight"
+                        >
+                          <span>I cannot pay right now. Nor do I want to give my email.</span>
+                          <ArrowDownRight className="w-3.5 h-3.5 shrink-0" />
+                        </button>
+                      </>
                     )}
 
                     {/* OBSERVER VIEW */}
@@ -289,7 +299,7 @@ export function ConversionCTA() {
                         <Button
                           variant="secondary"
                           onClick={handleInterested}
-                          className="w-full h-12 bg-white/10 hover:bg-white/15 text-white border-white/10"
+                          className="w-full h-12 bg-white/10 hover:bg-white/15 text-white border-white/10 text-sm md:text-base"
                         >
                           I&apos;ll just watch for now
                         </Button>
@@ -299,7 +309,6 @@ export function ConversionCTA() {
                       </>
                     )}
                   </div>
-
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -310,93 +319,4 @@ export function ConversionCTA() {
   );
 }
 
-function PaymentModalContent({ onClose, onComplete }: { onClose: () => void; onComplete: () => void }) {
-  const [step, setStep] = useState<"select" | "gpay" | "paypal">("select");
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="relative w-full max-w-md bg-zinc-900 border border-white/10 rounded-3xl p-6 shadow-2xl overflow-hidden"
-    >
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
-
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 p-2 text-white/40 hover:text-white hover:bg-white/5 rounded-full transition-all z-10"
-      >
-        ✕
-      </button>
-
-      {step === "select" ? (
-        <>
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold text-white mb-1">Choose Payment Method</h3>
-            <p className="text-sm text-white/50">One-time payment of $1 for lifetime access.</p>
-          </div>
-
-          <div className="flex flex-col gap-3 mb-8">
-            <button
-              onClick={() => setStep("gpay")}
-              className="w-full p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-between group"
-            >
-              <span className="font-semibold text-white">GPay</span>
-              <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 transition-colors" />
-            </button>
-            <button
-              onClick={() => setStep("paypal")}
-              className="w-full p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-between group"
-            >
-              <span className="font-semibold text-white">PayPal</span>
-              <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 transition-colors" />
-            </button>
-          </div>
-
-          <div className="text-center pt-4 border-t border-white/5">
-            <p className="text-xs text-white/40">
-              If we don&apos;t ship, you get a refund.
-            </p>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="flex items-center gap-2 mb-6">
-            <button onClick={() => setStep("select")} className="text-white/50 hover:text-white text-sm flex items-center gap-1 transition-colors">
-              ← Back
-            </button>
-          </div>
-
-          <h3 className="text-xl font-semibold text-white mb-2 text-center">
-            {step === "gpay" ? "Scan GPay QR" : "Scan PayPal QR"}
-          </h3>
-          <p className="text-sm text-white/50 mb-6 text-center">Complete payment to finalize registration.</p>
-
-          <div className="w-full aspect-square bg-white text-black p-4 rounded-xl mb-6 mx-auto max-w-[280px] shadow-lg flex items-center justify-center">
-            {/* Real QR would go here, using placeholder for demo */}
-            <div className="relative w-full h-full opacity-90">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=OpikaPreorder"
-                alt="Payment QR Code"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-
-          <Button
-            onClick={onComplete}
-            className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold h-12"
-          >
-            I&apos;ve Completed Payment
-          </Button>
-
-          <p className="text-[10px] text-center text-white/30 mt-4">
-            Transaction ID verification may be required.
-          </p>
-        </>
-      )}
-    </motion.div>
-  );
-}
 
