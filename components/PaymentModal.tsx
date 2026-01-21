@@ -73,7 +73,7 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                             Includes <span className="text-cyan-300 font-semibold">1 Year Pro Free</span> & Priority Access.
                         </p>
                         <p className="text-white/50 text-xs mt-1">
-                            Fully refundable if we don't launch.
+                            Fully refundable if we don&apos;t launch.
                         </p>
                     </div>
 

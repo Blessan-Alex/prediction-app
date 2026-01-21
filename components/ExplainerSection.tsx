@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Handshake, Lock, Trophy, Zap, Clock, Heart, MoveRight, Users, Scale, CheckCircle2, XCircle } from "lucide-react";
+import { Handshake, Zap, Clock, Heart, MoveRight, Scale, CheckCircle2, XCircle } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 export function ExplainerSection() {

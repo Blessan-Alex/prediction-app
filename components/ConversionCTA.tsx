@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, AlertCircle, ArrowRight, ArrowLeft, Mail, ArrowDownRight } from "lucide-react";
+import { CheckCircle2, AlertCircle, ArrowLeft, Mail, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
@@ -63,8 +63,8 @@ export function ConversionCTA() {
       toast(<RegistrationToast />, { containerId: "top-right" });
       setStatus("success");
       setEmail("");
-    } catch (err) {
-      setStatus("error");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
