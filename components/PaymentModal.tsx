@@ -65,7 +65,17 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                     <h3 className="text-xl font-semibold text-white mb-2 text-center">
                         {step === "gpay" ? "Scan GPay QR" : "Scan PayPal QR"}
                     </h3>
-                    <p className="text-sm text-white/50 mb-6 text-center">Complete payment to finalize registration.</p>
+                    <div className="text-sm text-center mb-6 space-y-1">
+                        <p className="text-white/90 font-medium">
+                            Secure your spot among the first 100.
+                        </p>
+                        <p className="text-white/70">
+                            Includes <span className="text-cyan-300 font-semibold">1 Year Pro Free</span> & Priority Access.
+                        </p>
+                        <p className="text-white/50 text-xs mt-1">
+                            Fully refundable if we don't launch.
+                        </p>
+                    </div>
 
                     <div className="w-full aspect-square bg-white text-black p-4 rounded-xl mb-6 mx-auto max-w-[280px] shadow-lg flex items-center justify-center">
                         {/* Real QR would go here, using placeholder for demo */}

@@ -109,7 +109,7 @@ export function HeroTop() {
                 variants={itemVariants}
                 className="text-[34px] leading-[1.1] md:text-[54px] lg:text-[64px] font-bold tracking-tight text-white"
               >
-                Make bets with friends.
+                Make custom bets with friends.
               </motion.h1>
 
               {/* Micro Row */}
@@ -117,6 +117,8 @@ export function HeroTop() {
                 variants={itemVariants}
                 className="flex items-center gap-3 text-xs md:text-sm text-white/50 font-medium tracking-wide uppercase"
               >
+                <span>Set Custom Bet</span>
+                <span className="text-white/20">•</span>
                 <span>Pick Side</span>
                 <span className="text-white/20">•</span>
                 <span>Lock Funds</span>
@@ -174,7 +176,7 @@ export function HeroTop() {
                   onClick={() => setShowPaymentModal(true)}
                   className="text-sm font-medium text-amber-300 hover:text-amber-100 transition-all drop-shadow-[0_0_8px_rgba(245,158,11,0.5)] hover:drop-shadow-[0_0_12px_rgba(245,158,11,0.8)] pb-0.5 border-b border-transparent hover:border-amber-300/30"
                 >
-                  Or pay $1 to lock your spot
+                  $1 to reserve a priority spot. Refundable anytime.
                 </button>
               </div>
             </motion.div>
