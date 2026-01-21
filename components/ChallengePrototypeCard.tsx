@@ -33,6 +33,11 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
     const { step, isAnimating, selectedSide, eventText, finishMode, amount, opponentHandle, outcome } = state;
     const shouldReduceMotion = useReducedMotion();
 
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
+
     // --- Refs for inputs ---
     const eventInputRef = useRef<HTMLInputElement>(null);
 
@@ -139,21 +144,29 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
 
 
 
+    const Wrapper = isMobile ? 'div' : GlowBorder;
+    const wrapperProps = isMobile
+        ? { className: "relative w-full shadow-2xl rounded-3xl border border-white/10 overflow-hidden" }
+        : { className: "w-full shadow-2xl", color: isAnimating ? "#f59e0b" : "#06b6d4" };
+
     return (
         <div className="relative w-full md:w-[440px] flex-shrink-0">
 
 
 
             {/* Main Card */}
-            <GlowBorder className="w-full shadow-2xl" color={isAnimating ? "#f59e0b" : "#06b6d4"}>
+            <Wrapper {...wrapperProps}>
                 <Card className="relative h-[540px] p-6 flex flex-col items-center bg-gradient-to-br from-[#1e2738] to-[#131826] border-white/10 overflow-hidden">
 
                     {/* Header (Status Bar Style) */}
                     <div className="w-full mb-6 pb-4 border-b border-white/5 space-y-2">
                         <div className="flex justify-between items-start">
                             <div className="flex flex-col">
-                                <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">
-                                    Demo
+                                <span className="text-[10px] font-bold text-emerald-400/90 tracking-widest uppercase">
+                                    Demo Mode
+                                </span>
+                                <span className="text-[9px] text-white/40 font-medium">
+                                    Simulation only — No real money
                                 </span>
                                 {/* Dynamic Friend Status */}
                                 <AnimatePresence>
@@ -438,8 +451,8 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                     ) : (
                                         // Final State
                                         <div className="w-full text-center space-y-4 md:space-y-6 relative">
-                                            {/* Confetti (Simple dots) */}
-                                            {showConfetti && (
+                                            {/* Confetti (Simple dots) - Desktop Only */}
+                                            {showConfetti && !isMobile && (
                                                 <div className="absolute inset-0 pointer-events-none">
                                                     {[...Array(12)].map((_, i) => (
                                                         <motion.div
@@ -528,8 +541,8 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                         <Lock className="w-8 h-8 text-emerald-400" />
                                     </motion.div>
 
-                                    {/* Coins flying in */}
-                                    {[...Array(6)].map((_, i) => (
+                                    {/* Coins flying in - Desktop Only */}
+                                    {!isMobile && [...Array(6)].map((_, i) => (
                                         <motion.div
                                             key={i}
                                             className="absolute w-4 h-4 rounded-full bg-amber-400 border border-amber-200 shadow-lg text-[8px] flex items-center justify-center font-bold text-amber-900"
@@ -569,7 +582,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                     </AnimatePresence>
 
                 </Card>
-            </GlowBorder>
+            </Wrapper>
         </div>
     );
 }

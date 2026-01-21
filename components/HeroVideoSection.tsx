@@ -62,9 +62,15 @@ export function HeroVideoSection() {
         return () => window.removeEventListener("settleup:play-demo", handler as EventListener);
     }, [popControls, shouldReduceMotion]);
 
-    // Subtle “trying to pop up” wiggle (only when near view)
+    // 1. Hook to detect mobile (to save perf on animations)
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
+
+    // Subtle “trying to pop up” wiggle (only when near view, and NOT mobile)
     const wiggle =
-        shouldReduceMotion || !isInView
+        shouldReduceMotion || !isInView || isMobile
             ? {}
             : {
                 y: [0, -2, 0],
@@ -85,7 +91,7 @@ export function HeroVideoSection() {
                 className="w-full max-w-6xl relative"
             >
                 {/* Background Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[520px] h-[520px] bg-cyan-500/10 blur-[110px] rounded-full pointer-events-none -z-10" />
+                <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[520px] h-[520px] bg-cyan-500/10 blur-[110px] rounded-full pointer-events-none -z-10" />
 
                 {/* Header */}
                 <div className="text-center mb-10">
@@ -103,8 +109,8 @@ export function HeroVideoSection() {
                         {/* Centered Pair: Steps + Widget */}
                         <div className="grid grid-cols-1 lg:grid-cols-[300px_500px] gap-6 items-start">
 
-                            {/* Left rail - Steps */}
-                            <div className="lg:pt-2 opacity-85">
+                            {/* Left rail - Steps (HIDDEN ON MOBILE) */}
+                            <div className="hidden lg:block lg:pt-2 opacity-85">
                                 <StepsRail step={state.step} onRestart={() => setState(INITIAL_STATE)} isAnimating={state.isAnimating} />
                             </div>
 
