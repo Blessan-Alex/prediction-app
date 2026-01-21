@@ -245,6 +245,19 @@ export function HeroTop() {
               </div>
             </div>
 
+            {/* 2. Separate Play Demo Card */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-4 text-center">
+              <Button
+                type="button"
+                size="md"
+                onClick={scrollToDemo}
+                className="w-full h-11 rounded-lg bg-white/10 hover:bg-white/15 text-white border border-white/15 hover:border-white/25 transition shadow-lg flex items-center justify-center gap-2"
+              >
+                <Play className="w-4 h-4 fill-white" />
+                Play Interactive Demo
+              </Button>
+            </div>
+
 
           </motion.div>
         </div>
