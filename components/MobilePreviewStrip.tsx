@@ -14,7 +14,7 @@ export function MobilePreviewStrip() {
     };
 
     return (
-        <section className="lg:hidden w-full px-4 pt-10 pb-16 flex flex-col items-center gap-8 relative z-10 bg-transparent">
+        <section className="lg:hidden w-full min-h-[100svh] px-4 py-16 flex flex-col justify-center items-center gap-8 relative z-10 bg-transparent snap-start snap-always">
             {/* 1. Live Example Card */}
             <div className="w-full max-w-[400px]">
                 <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 text-left relative overflow-hidden">

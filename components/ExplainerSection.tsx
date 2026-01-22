@@ -30,11 +30,11 @@ export function ExplainerSection() {
                     </p>
                 </div>
 
-                {/* 3-Card Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                {/* 3-Card Grid (Mobile Carousel / Desktop Grid) */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 md:pb-0 md:grid md:grid-cols-3 md:gap-6 items-stretch scrollbar-hide">
 
                     {/* CARD 1: What SettleUp is */}
-                    <div className="relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
+                    <div className="min-w-[85vw] md:min-w-0 snap-center relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
                         <div className="mb-6">
                             <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
                                 <Handshake className="w-5 h-5 text-cyan-400" />
@@ -65,7 +65,7 @@ export function ExplainerSection() {
                     </div>
 
                     {/* CARD 2: How winner is decided */}
-                    <div className="relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
+                    <div className="min-w-[85vw] md:min-w-0 snap-center relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
                         <div className="mb-6">
                             <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center mb-4 border border-purple-500/20">
                                 <Scale className="w-5 h-5 text-purple-400" />
@@ -152,7 +152,7 @@ export function ExplainerSection() {
                     </div>
 
                     {/* CARD 3: Why we built this */}
-                    <div className="relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
+                    <div className="min-w-[85vw] md:min-w-0 snap-center relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
                         <div className="mb-6">
                             <div className="w-10 h-10 rounded-full bg-pink-500/10 flex items-center justify-center mb-4 border border-pink-500/20">
                                 <Heart className="w-5 h-5 text-pink-400" />
