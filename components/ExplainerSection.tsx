@@ -107,7 +107,7 @@ export function ExplainerSection() {
                                         </div>
                                         <div className="flex items-start gap-3">
                                             <Zap className="w-4 h-4 text-amber-400 mt-1 shrink-0" />
-                                            <p className="text-base text-white/70">We check the result automatically and pay the winner deeply instantly.</p>
+                                            <p className="text-base text-white/70">We check the result automatically and pay the winner instantly.</p>
                                         </div>
                                     </motion.div>
                                 ) : (
