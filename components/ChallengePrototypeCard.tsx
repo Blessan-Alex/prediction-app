@@ -146,7 +146,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
 
     const Wrapper = isMobile ? 'div' : GlowBorder;
     const wrapperProps = isMobile
-        ? { className: "relative w-full shadow-2xl rounded-3xl border border-white/10 overflow-hidden" }
+        ? { className: "relative w-full max-w-[420px] mx-auto shadow-xl rounded-2xl border border-white/10 overflow-hidden" }
         : { className: "w-full shadow-2xl", color: isAnimating ? "#f59e0b" : "#06b6d4" };
 
     return (
@@ -156,7 +156,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
 
             {/* Main Card */}
             <Wrapper {...wrapperProps}>
-                <Card className="relative h-[540px] p-6 flex flex-col items-center bg-gradient-to-br from-[#1e2738] to-[#131826] border-white/10 overflow-hidden">
+                <Card className="relative h-[540px] p-4 md:p-6 flex flex-col items-center bg-gradient-to-br from-[#1e2738] to-[#131826] border-white/10 overflow-hidden">
 
                     {/* Header (Status Bar Style) */}
                     <div className="w-full mb-6 pb-4 border-b border-white/5 space-y-2">
@@ -165,7 +165,7 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                 <span className="text-[10px] font-bold text-emerald-400/90 tracking-widest uppercase">
                                     Demo Mode
                                 </span>
-                                <span className="text-[9px] text-white/40 font-medium">
+                                <span className="hidden md:inline text-[9px] text-white/40 font-medium">
                                     Simulation only — No real money
                                 </span>
                                 {/* Dynamic Friend Status */}
@@ -339,7 +339,8 @@ export function ChallengePrototypeCard({ state, updateState }: Props) {
                                         <div className="text-center pt-2">
                                             <span className="text-[10px] text-white/30 flex items-center justify-center gap-1">
                                                 <Lock className="w-3 h-3" />
-                                                coins locked securely in smart contract
+                                                <span className="hidden md:inline">coins locked securely in smart contract</span>
+                                                <span className="md:hidden">coins locked in smart contract</span>
                                             </span>
                                         </div>
                                     </div>

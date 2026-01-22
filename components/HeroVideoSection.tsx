@@ -94,7 +94,7 @@ export function HeroVideoSection() {
                 <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[520px] h-[520px] bg-cyan-500/10 blur-[110px] rounded-full pointer-events-none -z-10" />
 
                 {/* Header */}
-                <div className="text-center mb-10">
+                <div className="text-center mb-6 md:mb-10">
                     <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight">
                         Play a demo bet
                     </h2>
@@ -104,7 +104,7 @@ export function HeroVideoSection() {
                 </div>
 
                 {/* Frame */}
-                <div className="rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-[2px] p-5 md:p-6">
+                <div className="rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-[2px] p-2 md:p-6">
                     <div className="flex justify-center">
                         {/* Centered Pair: Steps + Widget */}
                         <div className="grid grid-cols-1 lg:grid-cols-[300px_500px] gap-6 items-start">
@@ -119,8 +119,8 @@ export function HeroVideoSection() {
                                 <motion.div
                                     animate={popControls}
                                     className={popped
-                                        ? "inline-flex rounded-[28px] ring-2 ring-cyan-400/30 shadow-[0_0_0_10px_rgba(34,211,238,0.10)]"
-                                        : "inline-flex"}
+                                        ? "w-full md:w-auto inline-flex rounded-[28px] ring-2 ring-cyan-400/30 shadow-[0_0_0_10px_rgba(34,211,238,0.10)]"
+                                        : "w-full md:w-auto inline-flex justify-center"}
                                 >
                                     <motion.div animate={wiggle} className="relative z-10 w-full">
                                         <ChallengePrototypeCard state={state} updateState={updateState} />

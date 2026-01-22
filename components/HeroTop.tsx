@@ -82,7 +82,7 @@ export function HeroTop() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[80vh] md:min-h-[90vh] flex flex-col justify-center items-center pt-24 pb-16 z-10 snap-start snap-always"
+      className="relative min-h-[100svh] md:min-h-[90vh] flex flex-col justify-center items-center pt-16 pb-16 md:pt-24 z-10 snap-start snap-always"
     >
       {/* Payment Modal Overlay */}
       {showPaymentModal && (
@@ -107,7 +107,7 @@ export function HeroTop() {
             <div className="space-y-4 w-full flex flex-col items-center lg:items-start">
               <motion.h1
                 variants={itemVariants}
-                className="text-[34px] leading-[1.1] md:text-[54px] lg:text-[64px] font-bold tracking-tight text-white"
+                className="text-[38px] leading-[1.1] md:text-[54px] lg:text-[64px] font-bold tracking-tight text-white"
               >
                 Make custom bets with friends.
               </motion.h1>
@@ -115,7 +115,7 @@ export function HeroTop() {
               {/* Micro Row */}
               <motion.div
                 variants={itemVariants}
-                className="flex items-center gap-3 text-xs md:text-sm text-white/50 font-medium tracking-wide uppercase"
+                className="flex items-center gap-2 md:gap-3 text-xs md:text-sm text-white/40 font-medium tracking-wide uppercase"
               >
                 <span>Set Custom Bet</span>
                 <span className="text-white/20">•</span>
@@ -187,7 +187,7 @@ export function HeroTop() {
             variants={itemVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="w-full max-w-[400px] mx-auto mt-10 lg:mt-0 lg:absolute lg:right-0 lg:top-[2%] lg:-translate-y-1/2 z-20 space-y-4"
+            className="hidden lg:block w-full max-w-[400px] mx-auto mt-10 lg:mt-0 lg:absolute lg:right-0 lg:top-[2%] lg:-translate-y-1/2 z-20 space-y-4"
           >
             {/* 1. Live Example Card */}
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 md:p-6 text-left relative overflow-hidden group hover:border-white/20 transition-colors">
