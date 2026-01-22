@@ -38,23 +38,23 @@ const geistSans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://settleupnow.vercel.app"),
   title: {
-    default: "SettleUp - The Easiest Way to Settle Friendly Bets",
-    template: "%s | SettleUp",
+    default: "Wagerly - The Easiest Way to Settle Friendly Bets",
+    template: "%s | Wagerly",
   },
   description: "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts for your friendly challenges.",
   openGraph: {
-    title: "SettleUp - Friendly Bets, Settled Instantly",
+    title: "Wagerly - Friendly Bets, Settled Instantly",
     description: "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts for your friendly challenges.",
     url: "https://settleupnow.vercel.app",
-    siteName: "SettleUp",
+    siteName: "Wagerly",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SettleUp - The Easiest Way to Settle Friendly Bets",
+    title: "Wagerly - The Easiest Way to Settle Friendly Bets",
     description: "Lock coins with friends for quick, trustless settlements. No complex escrow, just instant payouts.",
-    creator: "@settleup",
+    creator: "@wagerly",
   },
   robots: {
     index: true,
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "SettleUp",
+  "name": "Wagerly",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "offers": {

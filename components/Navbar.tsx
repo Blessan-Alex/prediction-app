@@ -34,19 +34,19 @@ export function Navbar() {
                     <Link
                         href="/"
                         className="flex items-center gap-3 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glow-blue rounded-md"
-                        aria-label="SettleUp Home"
+                        aria-label="Wagerly Home"
                     >
                         <div className="relative h-6 w-6 md:h-[26px] md:w-[26px]">
                             <Image
                                 src="/images/logo.png"
-                                alt="SettleUp Logo"
+                                alt="Wagerly Logo"
                                 fill
                                 className="object-contain"
                                 sizes="26px"
                                 priority
                             />
                         </div>
-                        <span className="text-sm font-medium text-white/90">SettleUp</span>
+                        <span className="text-sm font-medium text-white/90">Wagerly</span>
                     </Link>
 
                     <span className="text-white/20 select-none">/</span>

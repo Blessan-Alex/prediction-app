@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { CheckCircle, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export function MobilePreviewStrip() {
     const scrollToDemo = () => {
         // Tell the widget to do a pop animation
-        window.dispatchEvent(new CustomEvent("settleup:play-demo"));
+        window.dispatchEvent(new CustomEvent("wagerly:play-demo"));
 
         const el = document.getElementById("demo");
         el?.scrollIntoView({ behavior: "smooth", block: "start" });

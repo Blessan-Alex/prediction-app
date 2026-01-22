@@ -54,7 +54,7 @@ export default function ProblemSolution() {
                                 show: { opacity: 1, transition: { duration: 0.8 } }
                             }}
                         >
-                            SettleUp makes sure the awkward part never starts.
+                            Wagerly makes sure the awkward part never starts.
                         </motion.p>
                     </motion.div>
 

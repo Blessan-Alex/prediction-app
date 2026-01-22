@@ -38,7 +38,7 @@ export function HeroTop() {
 
   const scrollToDemo = () => {
     // Tell the widget to do a pop animation
-    window.dispatchEvent(new CustomEvent("settleup:play-demo"));
+    window.dispatchEvent(new CustomEvent("wagerly:play-demo"));
 
     const el = document.getElementById("demo");
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -132,7 +132,7 @@ export function HeroTop() {
               variants={itemVariants}
               className="text-base md:text-lg text-white/70 max-w-[640px] lg:max-w-none leading-relaxed"
             >
-              SettleUp is a simple app where two friends bet on something, both put money in
+              Wagerly is a simple app where two friends bet on something, both put money in
               before the bet starts, and the winner gets paid automatically when it ends.
             </motion.p>
 

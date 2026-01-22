@@ -58,8 +58,8 @@ export function HeroVideoSection() {
             setTimeout(() => setPopped(false), 900);
         };
 
-        window.addEventListener("settleup:play-demo", handler as EventListener);
-        return () => window.removeEventListener("settleup:play-demo", handler as EventListener);
+        window.addEventListener("wagerly:play-demo", handler as EventListener);
+        return () => window.removeEventListener("wagerly:play-demo", handler as EventListener);
     }, [popControls, shouldReduceMotion]);
 
     // 1. Hook to detect mobile (to save perf on animations)

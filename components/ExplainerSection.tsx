@@ -26,14 +26,14 @@ export function ExplainerSection() {
                         What exactly is this app?
                     </h2>
                     <p className="text-white/50 text-xl max-w-2xl mx-auto">
-                        SettleUp removes the awkward part of betting: collecting money after.
+                        Wagerly removes the awkward part of betting: collecting money after.
                     </p>
                 </div>
 
                 {/* 3-Card Grid (Mobile Carousel / Desktop Grid) */}
                 <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 md:pb-0 md:grid md:grid-cols-3 md:gap-6 items-stretch scrollbar-hide">
 
-                    {/* CARD 1: What SettleUp is */}
+                    {/* CARD 1: What Wagerly is */}
                     <div className="min-w-[85vw] md:min-w-0 snap-center relative group rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 flex flex-col hover:bg-white/[0.05] transition-colors">
                         <div className="mb-6">
                             <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
@@ -52,7 +52,7 @@ export function ExplainerSection() {
                             </div>
 
                             <div className="relative p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 group-hover:border-emerald-500/20 transition-colors">
-                                <span className="absolute -top-2.5 left-4 px-2 bg-[#0e121f] text-xs uppercase font-bold text-emerald-400 tracking-wider">With SettleUp</span>
+                                <span className="absolute -top-2.5 left-4 px-2 bg-[#0e121f] text-xs uppercase font-bold text-emerald-400 tracking-wider">With Wagerly</span>
                                 <div className="text-base text-emerald-200/60 leading-relaxed">
                                     Both lock money first <MoveRight className="inline w-3 h-3 mx-1" /> <br /> <span className="text-emerald-300 font-medium">Winner gets paid automatically.</span>
                                 </div>
@@ -157,7 +157,7 @@ export function ExplainerSection() {
                             <div className="w-10 h-10 rounded-full bg-pink-500/10 flex items-center justify-center mb-4 border border-pink-500/20">
                                 <Heart className="w-5 h-5 text-pink-400" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-1">Why we built <br /> SettleUp</h3>
+                            <h3 className="text-2xl font-bold text-white mb-1">Why we built <br /> Wagerly</h3>
                         </div>
 
                         <div className="flex-1 space-y-4">

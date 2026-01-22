@@ -11,7 +11,7 @@ export function Footer() {
 
                 {/* Brand Line */}
                 <div className="text-sm text-white/50 font-medium">
-                    SettleUp — friend challenges with clear rules.
+                    Wagerly — friend challenges with clear rules.
                 </div>
 
                 {/* Links & Disclaimer */}
