@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { Check, Mail } from "lucide-react";
 
 export function PaymentModalContent({ onClose, onComplete }: { onClose: () => void; onComplete: () => void }) {
     return (
@@ -20,24 +21,42 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                 ✕
             </button>
 
-            <h3 className="text-xl font-semibold text-white mb-2 text-center mt-4">
+            <h3 className="text-xl font-semibold text-white mb-6 text-center mt-2">
                 Complete Payment
             </h3>
-            <div className="text-sm text-center mb-6 space-y-3">
-                <p className="text-white/90 font-medium text-base">
-                    When we launch the app, we will give you  <span className="text-emerald-400">$10 worth of in-app credits</span>.
-                </p>
-                <p className="text-white/70">
-                    If we don&apos;t build it out, <span className="text-amber-300">we will refund you $2</span>.
-                </p>
-                <div className="bg-white/5 rounded-lg p-3 mt-4 border border-white/10">
-                    <p className="text-xs text-white/50 mb-1 font-semibold uppercase tracking-wider">
-                        Important Next Step
-                    </p>
-                    <p className="text-white/80 text-xs leading-5">
-                        After payment, please send a confirmation email with a screenshot to <span className="text-cyan-300 select-all">predictionwagers@proton.me</span> to verify your spot.
-                    </p>
+
+            <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-emerald-500/10 rounded-full">
+                        <Check className="w-4 h-4 text-emerald-400" />
+                    </div>
+                    <div>
+                        <p className="text-white font-medium">Get $10 in credits</p>
+                        <p className="text-white/60 text-sm">We&apos;ll add $10 to your account when we launch.</p>
+                    </div>
                 </div>
+
+                <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-amber-500/10 rounded-full">
+                        <div className="w-4 h-4 flex items-center justify-center text-amber-400 font-bold text-xs">$</div>
+                    </div>
+                    <div>
+                        <p className="text-white font-medium">100% Refund Guarantee</p>
+                        <p className="text-white/60 text-sm">If we don&apos;t build it, we&apos;ll refund you $2.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-3 opacity-5">
+                    <Mail className="w-12 h-12 text-white" />
+                </div>
+                <p className="text-[10px] text-cyan-400 mb-1 font-bold uppercase tracking-wider">
+                    Important Next Step
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed">
+                    After payment, send a screenshot to <span className="text-white font-medium select-all">predictionwagers@proton.me</span> to verify your spot.
+                </p>
             </div>
 
             <Button
@@ -45,7 +64,7 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                     window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=admin%40opika.co&item_name=Payment&amount=1&currency_code=USD", "_blank");
                     onComplete();
                 }}
-                className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold h-12"
+                className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold h-12 text-base shadow-lg shadow-cyan-500/20"
             >
                 Proceed to PayPal
             </Button>
