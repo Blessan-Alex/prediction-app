@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export function PaymentModalContent({ onClose, onComplete }: { onClose: () => void; onComplete: () => void }) {
@@ -27,10 +25,10 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
             </h3>
             <div className="text-sm text-center mb-6 space-y-3">
                 <p className="text-white/90 font-medium text-base">
-                    When we launch the app, we will give you     <span className="text-emerald-400">$10 worth of in-app credits</span>.
+                    When we launch the app, we will give you  <span className="text-emerald-400">$10 worth of in-app credits</span>.
                 </p>
                 <p className="text-white/70">
-                    If we don't build it out, <span className="text-amber-300">we will refund you $2</span>.
+                    If we don&apos;t build it out, <span className="text-amber-300">we will refund you $2</span>.
                 </p>
                 <div className="bg-white/5 rounded-lg p-3 mt-4 border border-white/10">
                     <p className="text-xs text-white/50 mb-1 font-semibold uppercase tracking-wider">
