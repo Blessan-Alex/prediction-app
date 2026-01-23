@@ -25,16 +25,21 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
             <h3 className="text-xl font-semibold text-white mb-2 text-center mt-4">
                 Complete Payment
             </h3>
-            <div className="text-sm text-center mb-6 space-y-1">
-                <p className="text-white/90 font-medium">
-                    Secure your spot among the first 100.
+            <div className="text-sm text-center mb-6 space-y-3">
+                <p className="text-white/90 font-medium text-base">
+                    When we launch the app, we will give you     <span className="text-emerald-400">$10 worth of in-app credits</span>.
                 </p>
                 <p className="text-white/70">
-                    Includes <span className="text-cyan-300 font-semibold">1 Year Pro Free</span> & Priority Access.
+                    If we don't build it out, <span className="text-amber-300">we will refund you $2</span>.
                 </p>
-                <p className="text-white/50 text-xs mt-1">
-                    Fully refundable if we don&apos;t launch.
-                </p>
+                <div className="bg-white/5 rounded-lg p-3 mt-4 border border-white/10">
+                    <p className="text-xs text-white/50 mb-1 font-semibold uppercase tracking-wider">
+                        Important Next Step
+                    </p>
+                    <p className="text-white/80 text-xs leading-5">
+                        After payment, please send a confirmation email with a screenshot to <span className="text-cyan-300 select-all">predictionwagers@proton.me</span> to verify your spot.
+                    </p>
+                </div>
             </div>
 
             <Button

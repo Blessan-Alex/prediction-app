@@ -182,7 +182,7 @@ export function ConversionCTA() {
               {/* Body Text - Typography Update: text-sm md:text-base leading-7 */}
               <p className="text-white/60 text-sm md:text-base leading-7 max-w-sm">
                 {view === "waitlist" && "We are letting in the first 100 people before the public launch. If you join now, you get the Pro version free for one year."}
-                {view === "frontier" && "You get priority access. If we do not launch, you get a full refund."}
+                {view === "frontier" && "If we build it, you get $10 in credits. If we don't, you get a $2 refund."}
                 {view === "observer" && "No signup needed. You can still follow along."}
               </p>
             </div>
