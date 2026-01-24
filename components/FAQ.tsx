@@ -8,23 +8,23 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
     {
         question: "Is this real money?",
-        answer: "Yes. You put in real dollars. The winner gets real dollars. This is not fake currency or points."
+        answer: "Yes. You take positions with real capital. Successful predictions yield real returns based on the agreed outcome. This facilitates a true prediction market."
     },
     {
-        question: "What if me and my friend disagree on who won?",
-        answer: "If it is a private bet, both of you have to confirm the winner. If you say different names, the bet is cancelled and both of you get your money back."
+        question: "What if there is a dispute on the outcome?",
+        answer: "For private markets, consensus is required from both counterparties to settle the contract. If there is a discrepancy in reporting, the market is voided and all capital is returned."
     },
     {
-        question: "What if my friend just ignores the app after the bet?",
-        answer: "If 48 hours pass and they have not responded, the bet is cancelled. Both of you get refunded."
+        question: "What if the counterparty doesn't verify the result?",
+        answer: "If 48 hours elapse without outcome verification, the market contract expires. All funds are returned to their respective owners."
     },
     {
-        question: "Do you take a cut of the money?",
-        answer: "No. The winner gets the full amount."
+        question: "Are there platform fees?",
+        answer: "No. We facilitate the market infrastructure without taking a commission. The full value of the contract is transferred to the correct prediction."
     },
     {
         question: "Is this legal?",
-        answer: "This is for informal bets between friends. Two people who know each other, betting on something they care about. We are not a casino or a gambling company."
+        answer: "Wagerly operates as a social prediction market platform. Users create custom contracts based on real-world events. We differ from traditional gambling by focusing on skill-based forecasting between known counterparties."
     }
 ];
 
