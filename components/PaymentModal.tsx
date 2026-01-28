@@ -21,9 +21,12 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                 ✕
             </button>
 
-            <h3 className="text-xl font-semibold text-white mb-6 text-center mt-2">
-                Complete Payment
+            <h3 className="text-xl font-semibold text-white mb-2 text-center mt-2">
+                You got early access!
             </h3>
+            <p className="text-center text-white/60 mb-6 text-sm px-4">
+                Now if you pay $1 you can be a <span className="text-amber-400 font-bold">Frontier Member</span>.
+            </p>
 
             <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
@@ -31,8 +34,8 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                         <Check className="w-4 h-4 text-emerald-400" />
                     </div>
                     <div>
-                        <p className="text-white font-medium">Get $10 in credits</p>
-                        <p className="text-white/60 text-sm">We&apos;ll add $10 to your account when we launch.</p>
+                        <p className="text-white font-medium">10 in-app credits</p>
+                        <p className="text-white/60 text-sm">Start betting immediately with $10 in your wallet.</p>
                     </div>
                 </div>
 
@@ -41,8 +44,8 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                         <div className="w-4 h-4 flex items-center justify-center text-amber-400 font-bold text-xs">$</div>
                     </div>
                     <div>
-                        <p className="text-white font-medium">100% Refund Guarantee</p>
-                        <p className="text-white/60 text-sm">If we don&apos;t build it, we&apos;ll refund you $2.</p>
+                        <p className="text-white font-medium">Frontier Status</p>
+                        <p className="text-white/60 text-sm">Exclusive badge and priority feature access.</p>
                     </div>
                 </div>
             </div>
@@ -55,22 +58,22 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
                     Important Next Step
                 </p>
                 <p className="text-white/80 text-sm leading-relaxed">
-                    After payment, send a screenshot to <span className="text-white font-medium select-all">predictionwagers@proton.me</span> to verify your spot.
+                    After payment, send a screenshot to <span className="text-white font-medium select-all">predictionwagers@proton.me</span> to verify your status.
                 </p>
             </div>
 
             <Button
                 onClick={() => {
-                    window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=admin%40opika.co&item_name=Payment&amount=1&currency_code=USD", "_blank");
+                    window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=admin%40opika.co&item_name=Frontier%20Member&amount=1&currency_code=USD", "_blank");
                     onComplete();
                 }}
                 className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold h-12 text-base shadow-lg shadow-cyan-500/20"
             >
-                Proceed to PayPal
+                Pay $1 - Become Frontier Member
             </Button>
 
             <p className="text-[10px] text-center text-white/30 mt-4">
-                Transaction ID verification may be required.
+                100% Refundable if we don't launch.
             </p>
         </motion.div>
     );

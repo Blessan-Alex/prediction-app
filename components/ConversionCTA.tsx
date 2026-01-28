@@ -62,6 +62,7 @@ export function ConversionCTA() {
 
       toast(<RegistrationToast />, { containerId: "top-right" });
       setStatus("success");
+      setShowPaymentModal(true);
       setEmail("");
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -252,21 +253,7 @@ export function ConversionCTA() {
                         </Button>
 
                         {/* Secondary CTA: Frontier Upsell - GOLDEN PREMIUM STYLE */}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setView("frontier");
-                            setStatus("idle");
-                          }}
-                          className="w-full h-auto py-3 flex flex-col items-center justify-center gap-0.5 rounded-lg bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/30 hover:border-amber-400/50 hover:from-amber-500/20 hover:to-amber-600/10 transition-all group mt-3 shadow-[0_0_15px_-5px_rgba(245,158,11,0.2)]"
-                        >
-                          <span className="text-xs font-bold text-amber-200 group-hover:text-amber-100 transition-colors uppercase tracking-wide flex items-center gap-2">
-                            <span className="hidden group-hover:inline-block transition-all">✨</span>
-                            Pay $1 to become a Frontier Member
-                            <span className="hidden group-hover:inline-block transition-all">✨</span>
-                          </span>
-                          <span className="text-[11px] text-amber-500/60 group-hover:text-amber-500/80">Guaranteed priority access</span>
-                        </button>
+
                       </form>
                     )}
 

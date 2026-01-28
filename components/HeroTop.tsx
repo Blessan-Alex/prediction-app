@@ -71,6 +71,7 @@ export function HeroTop() {
       }
 
       toast(<RegistrationToast />, { containerId: "top-right" });
+      setShowPaymentModal(true);
       setEmail("");
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -171,13 +172,7 @@ export function HeroTop() {
 
               <div className="flex items-center gap-4 pt-1">
                 <p className="text-xs text-white/40">No spam. Early access only.</p>
-                <span className="text-white/20 hidden sm:inline">•</span>
-                <button
-                  onClick={() => setShowPaymentModal(true)}
-                  className="text-sm font-medium text-amber-300 hover:text-amber-100 transition-all drop-shadow-[0_0_8px_rgba(245,158,11,0.5)] hover:drop-shadow-[0_0_12px_rgba(245,158,11,0.8)] pb-0.5 border-b border-transparent hover:border-amber-300/30"
-                >
-                  $1 to reserve a priority spot. Refundable anytime.
-                </button>
+
               </div>
             </motion.div>
           </motion.div>
