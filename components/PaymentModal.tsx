@@ -73,7 +73,7 @@ export function PaymentModalContent({ onClose, onComplete }: { onClose: () => vo
             </Button>
 
             <p className="text-[10px] text-center text-white/30 mt-4">
-                100% Refundable if we don't launch.
+                100% Refundable if we don&apos;t launch.
             </p>
         </motion.div>
     );
